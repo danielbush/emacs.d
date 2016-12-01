@@ -79,4 +79,4 @@
   (defun me/font-large () (interactive) (set-face-attribute 'default nil :font "Liberation Mono 13" ))
   )
 
-(me/font-medium)
+;(me/font-medium)
