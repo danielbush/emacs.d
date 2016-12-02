@@ -17,6 +17,7 @@
   (interactive)
   (load (concat user-emacs-directory "me/settings.el"))
   (load (concat user-emacs-directory "me/bindings.el"))
+  (load (concat user-emacs-directory "me/macosx.el"))
   (load (concat user-emacs-directory "me/extra/helm.el"))
   (load (concat user-emacs-directory "me/extra/utils.el"))
   (load (concat user-emacs-directory "me/extra/node.el"))
