@@ -24,7 +24,7 @@
   "Run COMMAND with TERM=xterm and save to a unique buffer."
   (interactive "sCommand: ")
   (let* ((buffer-name (me/make-command-buffer-name command)))
-    (async-shell-command (concat "TERM=xterm " command) buffer-name)))
+    (async-shell-command (concat "TERM=xterm-256color " command) buffer-name)))
 
 (defun me/make-command-buffer-name (command)
   "Get project-root for use as name when running COMMAND..
