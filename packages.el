@@ -16,6 +16,7 @@
 	magit
 	flycheck
 	helm-flycheck
+	editorconfig
 	wgrep
 	wgrep-helm
 
@@ -26,6 +27,7 @@
 
         yaml-mode
 	js2-mode
+	rjsx-mode
 	json-mode
 	php-mode
 	web-mode
@@ -34,6 +36,8 @@
 	rspec-mode
 	inf-ruby
 	rvm
+        tidy
+        csharp-mode
 
         auto-complete
         ac-helm
