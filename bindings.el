@@ -36,3 +36,8 @@
 (global-set-key (kbd "C-c k k")
                   '(lambda () (interactive)
                      (kill-buffer (current-buffer))))
+
+; mac os x pain...
+(global-set-key (kbd "C-c C-b") 'other-frame)
+(global-set-key (kbd "C-c C-n") 'other-frame)
+(global-set-key (kbd "C-x C-n") 'other-frame)

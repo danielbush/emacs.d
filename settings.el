@@ -1,8 +1,11 @@
+;;; package --- some personal settings, core emacs
+;;; Commentary:
+;;; 
 ;; Viper - so that I can use vi keys
 
 ;; So I have vi keybindings.
 (setq viper-mode t)
-(require 'viper)  
+(require 'viper)
 ;; Other - PUT THESE IN ~/.viper:
 ;(setq viper-expert-level  '5)
 ;(setq viper-inhibit-startup-message  't)
@@ -79,4 +82,17 @@
   (defun me/font-large () (interactive) (set-face-attribute 'default nil :font "Liberation Mono 13" ))
   )
 
-(me/font-medium)
+(defun me/mac-fonts ()
+  "Fonts for mac os x."
+  (interactive)
+  (progn
+    (defun me/font-small () (interactive) (set-face-attribute 'default nil :font "Menlo 10" ))
+    (defun me/font-med () (interactive) (set-face-attribute 'default nil :font "Menlo 12" ))
+    (defun me/font-medium () (interactive) (set-face-attribute 'default nil :font "Menlo 13" ))
+    (defun me/font-large () (interactive) (set-face-attribute 'default nil :font "Menlo 14" ))
+    (defun me/font-xlarge () (interactive) (set-face-attribute 'default nil :font "Menlo 16" ))
+    ))
+
+(require 'helm-projectile)
+
+;(me/font-medium)
