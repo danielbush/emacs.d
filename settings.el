@@ -95,4 +95,8 @@
 
 (require 'helm-projectile)
 
+; Make js2-mode the default for js.
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+
 ;(me/font-medium)
