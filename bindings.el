@@ -29,7 +29,7 @@
   (global-set-key (kbd "C-9") '(lambda () (interactive) (me/elscreen-goto-screen 8)))
   (global-set-key (kbd "C-0") '(lambda () (interactive) (me/elscreen-goto-screen 9)))
 
-  (global-set-key (kbd "M-p") 'avy-goto-word-0)
+  (global-set-key (kbd "M-p") 'avy-goto-word-or-subword-1)
 
   (global-set-key (kbd "C-M-h") 'windmove-left)
   (global-set-key (kbd "C-M-j") 'windmove-down)
