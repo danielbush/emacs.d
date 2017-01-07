@@ -31,6 +31,12 @@
 ;; windmove so I can move easily
 ;; - see bindings; windmove looks to be core.
 
+;; Maybe useful if you have floating emacs frames especially if on different monitors.
+(require 'cl)
+(require 'framemove)
+(windmove-default-keybindings)
+(setq framemove-hook-into-windmove t)
+
 ;; winner so I have window history
 
 (winner-mode 1)
