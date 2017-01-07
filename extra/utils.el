@@ -21,10 +21,10 @@
     filename ))
 
 (defun me/command (command)
-  "Run COMMAND with TERM=xterm and save to a unique buffer."
+  "Run COMMAND with TERM env variable and save to a unique buffer."
   (interactive "sCommand: ")
   (let* ((buffer-name (me/make-command-buffer-name command)))
-    (async-shell-command (concat "TERM=xterm-256color " command) buffer-name)))
+    (async-shell-command (concat "TERM=dumb " command) buffer-name)))
 
 (defun me/make-command-buffer-name (command)
   "Get project-root for use as name when running COMMAND..
@@ -40,6 +40,12 @@ buffer (to prevent buffer proliferation)."
             (concat "*command* " command))))
     buffer-name))
 
+(defun me/shell-in-dir ()
+  "Run m-x shell in current buffer and rename appropriately."
+  (interactive)
+  (let* ((file (me/this-file)))
+    (shell)
+    (rename-buffer (concat "*shell " file "*")) ))
 
 (provide 'me/utils)
 ;;; utils.el ends here
