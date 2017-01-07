@@ -39,6 +39,10 @@
         tidy
         csharp-mode
 
+        docker
+        dockerfile-mode
+        docker-tramp
+
         auto-complete
         ac-helm
         ac-dabbrev
