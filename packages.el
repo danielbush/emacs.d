@@ -9,6 +9,13 @@
 	helm-ag
 	projectile
 	helm-projectile
+        helm-swoop
+
+        switch-window
+        avy
+        ace-window
+        window-numbering
+        framemove
 
 	elscreen
 	elscreen-persist
@@ -38,6 +45,7 @@
 	rvm
         tidy
         csharp-mode
+        paredit
 
         auto-complete
         ac-helm
