@@ -30,7 +30,7 @@
                           (split-string
                            (shell-command-to-string
                             (concat
-                             "find -L $HOME/logs -maxdepth 3 -printf \"%p\n\" | grep -v '/\.git'"
+                             "find -L $HOME/todos/logs -maxdepth 3 -printf \"%p\n\" | grep -v '/\.git'"
                              ;; "find -L . -type f -path \"" pattern "\" -printf \"%P\n\""
                              ;; "find -L . -type f -name \"" pattern "\" -printf \"%P\n\""
                              ;; "find -L . -type f -name \"" pattern "\""
