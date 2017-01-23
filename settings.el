@@ -32,10 +32,15 @@
 ;; - see bindings; windmove looks to be core.
 
 ;; Maybe useful if you have floating emacs frames especially if on different monitors.
-(require 'cl)
-(require 'framemove)
-(windmove-default-keybindings)
-(setq framemove-hook-into-windmove t)
+
+(defun me/windmove-uses-frames ()
+  "Windmove keys will move to frames - works well if frames are on different screens
+or cascaded."
+  (interactive)
+  (require 'cl)
+  (require 'framemove)
+  (windmove-default-keybindings)
+  (setq framemove-hook-into-windmove t))
 
 ;; winner so I have window history
 
