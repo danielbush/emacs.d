@@ -45,7 +45,10 @@ Motivation: cleaning up escape chars after running npm run test and related."
                  (lambda (buffer-name do-thing at-time)
                    (if (not (get-buffer-process buffer-name))
                        (funcall do-thing)
-                     (me/do-thing-after-buffer-process buffer-name do-thing (+ at-time 0.5))
+                     (if (> at-time 20)
+                         (progn
+                           (message "Not calling run-at-time anymore, exceeded time limit."))
+                       (me/do-thing-after-buffer-process buffer-name do-thing (+ at-time 0.5)) )
                      )) buffer-name do-thing at-time)))
 
 (defun me/npm/tidy-up-buffer-escape-chars (&optional -buffer-name)
