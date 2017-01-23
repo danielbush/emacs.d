@@ -26,6 +26,7 @@
   (me/elscreen-make "2" "~/projects")
   (me/elscreen-make "3" "~/projects")
   (me/elscreen-make "4" "~/projects")
+  (elscreen-goto 0)
 )
 
 (defun me/setup-elscreen-alternative-for-domain ()
@@ -36,6 +37,7 @@
   (me/elscreen-make "2" "~/notes")
   (me/elscreen-make "3" "~/")
   (me/elscreen-make "4" "~/")
+  (elscreen-goto 0)
 )
 
 
