@@ -102,7 +102,9 @@
 (require 'helm-projectile)
 
 ; Make js2-mode the default for js.
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+
+(set-face-attribute 'region nil :foreground "#777" :background "#ffa")
 
 
 ;(me/font-medium)
