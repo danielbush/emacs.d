@@ -10,8 +10,8 @@
 (global-set-key (kbd "C-c f") 'helm-projectile-ag)
 (global-set-key (kbd "C-c p p") 'helm-projectile-switch-project)
 (global-set-key (kbd "C-x p s s") 'helm-do-ag)
-(global-set-key (kbd "M-s o") 'helm-occur)
 (global-set-key (kbd "M-s o") 'helm-swoop)
+(global-set-key (kbd "M-s o") 'helm-occur)
 (global-set-key (kbd "C-x c M-s o") 'occur)
 
 (global-set-key (kbd "C-x C-o") 'helm-elscreen)
@@ -29,7 +29,7 @@
   (global-set-key (kbd "C-9") '(lambda () (interactive) (me/elscreen-goto-screen 8)))
   (global-set-key (kbd "C-0") '(lambda () (interactive) (me/elscreen-goto-screen 9)))
 
-  (global-set-key (kbd "M-p") 'avy-goto-word-or-subword-1)
+  (global-set-key (kbd "M-z") 'avy-goto-word-or-subword-1)
 
   (global-set-key (kbd "C-M-h") 'windmove-left)
   (global-set-key (kbd "C-M-j") 'windmove-down)
@@ -41,6 +41,11 @@
   (global-set-key (kbd "C-S-k") 'windmove-up)
   (global-set-key (kbd "C-S-l") 'windmove-right)
 
+  (global-set-key (kbd "C-M-S-h") 'windmove-left)
+  (global-set-key (kbd "C-M-S-j") 'windmove-down)
+  (global-set-key (kbd "C-M-S-k") 'windmove-up)
+  (global-set-key (kbd "C-M-S-l") 'windmove-right)
+
   (global-set-key (kbd "M-q") 'switch-window)
   ;(global-set-key (kbd "C-1") 'select-window-1)
   ;(global-set-key (kbd "C-2") 'select-window-2)
@@ -49,16 +54,16 @@
   ;(global-set-key (kbd "C-5") 'select-window-5)
   ;(global-set-key (kbd "C-6") 'select-window-6)
 
-  (global-set-key (kbd "C-M-S-h") 'fm-left-frame)
-  (global-set-key (kbd "C-M-S-j") 'fm-down-frame)
-  (global-set-key (kbd "C-M-S-k") 'fm-up-frame)
-  (global-set-key (kbd "C-M-S-l") 'fm-right-frame)
-
-
+  ;; fm-*
+  ;(global-set-key (kbd "C-M-S-h") 'fm-left-frame)
+  ;(global-set-key (kbd "C-M-S-j") 'fm-down-frame)
+  ;(global-set-key (kbd "C-M-S-k") 'fm-up-frame)
+  ;(global-set-key (kbd "C-M-S-l") 'fm-right-frame)
   ;; For mac osx - 2 monitors
-  (global-set-key (kbd "M-l") 'fm-right-frame)
-  (global-set-key (kbd "M-h") 'fm-left-frame)
+  ;(global-set-key (kbd "M-l") 'fm-right-frame)
+  ;(global-set-key (kbd "M-h") 'fm-left-frame)
   ;(global-set-key (kbd "M-q") 'select-frame-by-name)
+
   (global-set-key (kbd "M-1") '(lambda () (interactive) (select-frame-by-name "1")))
   (global-set-key (kbd "M-2") '(lambda () (interactive) (select-frame-by-name "2")))
   (global-set-key (kbd "M-3") '(lambda () (interactive) (select-frame-by-name "3")))
