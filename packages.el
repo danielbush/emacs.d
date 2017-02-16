@@ -10,6 +10,7 @@
 	projectile
 	helm-projectile
         helm-swoop
+        helm-ls-git
 
         switch-window
         avy

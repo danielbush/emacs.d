@@ -105,6 +105,7 @@ or cascaded."
     ))
 
 (require 'helm-projectile)
+(require 'helm-ls-git)
 
 ; Make js2-mode the default for js.
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
