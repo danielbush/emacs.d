@@ -3,12 +3,18 @@
 ;;; Code:
 (require 'projectile)
 (require 'me/utils (concat default-directory "utils.el"))
+(require 'nvm)
+
+(defvar me/node-cmd "/Users/daniel.bush/.nvm/versions/node/v6.9.4/bin/node" )
+(defvar me/npm-cmd "/Users/daniel.bush/.nvm/versions/node/v6.9.4/bin/npm" )
+
+
 
 (defun me/npm (command)
   "Run npm COMMAND and save to a unique buffer."
   (interactive "snpm: ")
   (let* ((buffer-name (me/make-command-buffer-name (concat "npm " command))))
-    (async-shell-command (concat "TERM=dumb npm " command) buffer-name)
+    (async-shell-command (concat "TERM=dumb " me/npm-cmd " " command) buffer-name)
     (me/tidy-up-after-finish buffer-name)
     ))
 
@@ -16,7 +22,8 @@
   "Run npm run COMMAND and save to a unique buffer."
   (interactive "snpm run: ")
   (let* ((buffer-name (me/make-command-buffer-name (concat "npm run " command))))
-    (async-shell-command (concat "TERM=xterm npm run " command) buffer-name)
+    (async-shell-command (concat "TERM=xterm " me/npm-cmd " run " command) buffer-name)
+    ;(message (concat "TERM=xterm " me/npm-cmd " run " command))
     (me/tidy-up-after-finish buffer-name)
     ))
 
@@ -24,7 +31,7 @@
   "Run npm test and save to a unique buffer."
   (interactive)
   (let* ((buffer-name (me/make-command-buffer-name "npm run test")))
-    (async-shell-command "TERM=xterm npm run test" buffer-name)
+    (async-shell-command "TERM=xterm " me/npm-cmd " run test" buffer-name)
     (me/tidy-up-after-finish buffer-name)
     ))
 
