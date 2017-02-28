@@ -31,7 +31,7 @@
   "Run npm test and save to a unique buffer."
   (interactive)
   (let* ((buffer-name (me/make-command-buffer-name "npm run test")))
-    (async-shell-command "TERM=xterm " me/npm-cmd " run test" buffer-name)
+    (async-shell-command (concat "TERM=xterm " me/npm-cmd " run test") buffer-name)
     (me/tidy-up-after-finish buffer-name)
     ))
 
