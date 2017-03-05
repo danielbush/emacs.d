@@ -29,6 +29,7 @@
   (global-set-key (kbd "C-9") '(lambda () (interactive) (me/elscreen-goto-screen 8)))
   (global-set-key (kbd "C-0") '(lambda () (interactive) (me/elscreen-goto-screen 9)))
 
+  ;(global-set-key (kbd "M-p") 'avy-goto-word-or-subword-1)
   (global-set-key (kbd "M-z") 'avy-goto-word-or-subword-1)
 
   (global-set-key (kbd "C-M-h") 'windmove-left)
@@ -59,6 +60,7 @@
   ;(global-set-key (kbd "C-M-S-j") 'fm-down-frame)
   ;(global-set-key (kbd "C-M-S-k") 'fm-up-frame)
   ;(global-set-key (kbd "C-M-S-l") 'fm-right-frame)
+
   ;; For mac osx - 2 monitors
   ;(global-set-key (kbd "M-l") 'fm-right-frame)
   ;(global-set-key (kbd "M-h") 'fm-left-frame)

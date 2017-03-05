@@ -47,6 +47,11 @@
         tidy
         csharp-mode
         paredit
+        haskell-mode
+
+        docker
+        dockerfile-mode
+        docker-tramp
 
         auto-complete
         ac-helm
