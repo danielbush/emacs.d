@@ -46,6 +46,7 @@
         tidy
         csharp-mode
         paredit
+        haskell-mode
 
         docker
         dockerfile-mode
