@@ -3,7 +3,6 @@
 ;;; Code:
 (require 'projectile)
 (require 'me/utils (concat default-directory "utils.el"))
-(require 'nvm)
 
 (defvar me/node-cmd "/Users/daniel.bush/.nvm/versions/node/v6.9.4/bin/node" )
 (defvar me/npm-cmd "/Users/daniel.bush/.nvm/versions/node/v6.9.4/bin/npm" )
