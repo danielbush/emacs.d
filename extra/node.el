@@ -9,7 +9,7 @@
   (interactive "snpm: ")
   (let* ((buffer-name (me/make-command-buffer-name (concat "npm " command))))
     (async-shell-command (concat "TERM=dumb npm " command) buffer-name)
-    (me/tidy-up-after-finish buffer-name)
+    ;(me/tidy-up-after-finish buffer-name)
     ))
 
 (defun me/npm/run (command)
@@ -25,7 +25,7 @@
   (interactive)
   (let* ((buffer-name (me/make-command-buffer-name "npm run test")))
     (async-shell-command "TERM=xterm npm run test" buffer-name)
-    (me/tidy-up-after-finish buffer-name)
+    ;(me/tidy-up-after-finish buffer-name)
     ))
 
 (defun me/tidy-up-after-finish (buffer-name)
@@ -57,6 +57,43 @@ Motivation: cleaning up escape chars after running npm run test and related."
       )
     )
   )
+
+;;
+(defun me/dumbify-node-shell-output ()
+  "See http://stackoverflow.com/questions/13185729/npm-dont-display-prompt-correctly-under-emacs-eshell ."
+  (interactive)
+  (add-to-list
+   'comint-preoutput-filter-functions
+   (lambda (output)
+     (replace-regexp-in-string "\\[[0-9]+[GKJ]" "" output)))
+  )
+
+(defvar me/node "node")
+
+(defun me/node-run-this-file ()
+  (interactive)
+  (async-shell-command (format "%s %s" me/node (me/this-file)))
+  )
+
+;; From http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable .
+;; Because of https://github.com/eslint/eslint/issues/1238 .
+
+(require 'flycheck)
+(defun me/use-eslint-from-node-modules ()
+  "Use locally (npm) installed eslint so that we can use eslintConfig in package.json."
+  (message "running eslint hook")
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (eslint (and root
+                      (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                        root))))
+    (message eslint)
+    (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint))))
+
+(add-hook 'flycheck-mode-hook #'me/use-eslint-from-node-modules)
+
 
 (provide 'me/node)
 ;;; node.el ends here
