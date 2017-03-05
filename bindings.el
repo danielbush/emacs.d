@@ -10,8 +10,8 @@
 (global-set-key (kbd "C-c f") 'helm-projectile-ag)
 (global-set-key (kbd "C-c p p") 'helm-projectile-switch-project)
 (global-set-key (kbd "C-x p s s") 'helm-do-ag)
-(global-set-key (kbd "M-s o") 'helm-occur)
 (global-set-key (kbd "M-s o") 'helm-swoop)
+(global-set-key (kbd "M-s o") 'helm-occur)
 (global-set-key (kbd "C-x c M-s o") 'occur)
 
 (global-set-key (kbd "C-x C-o") 'helm-elscreen)
@@ -30,6 +30,7 @@
   (global-set-key (kbd "C-0") '(lambda () (interactive) (me/elscreen-goto-screen 9)))
 
   (global-set-key (kbd "M-p") 'avy-goto-word-or-subword-1)
+  (global-set-key (kbd "M-z") 'avy-goto-word-or-subword-1)
 
   (global-set-key (kbd "C-M-h") 'windmove-left)
   (global-set-key (kbd "C-M-j") 'windmove-down)
@@ -49,10 +50,14 @@
   ;(global-set-key (kbd "C-5") 'select-window-5)
   ;(global-set-key (kbd "C-6") 'select-window-6)
 
-  (global-set-key (kbd "C-M-S-h") 'fm-left-frame)
-  (global-set-key (kbd "C-M-S-j") 'fm-down-frame)
-  (global-set-key (kbd "C-M-S-k") 'fm-up-frame)
-  (global-set-key (kbd "C-M-S-l") 'fm-right-frame)
+  (global-set-key (kbd "C-M-S-h") 'windmove-left)
+  (global-set-key (kbd "C-M-S-j") 'windmove-down)
+  (global-set-key (kbd "C-M-S-k") 'windmove-up)
+  (global-set-key (kbd "C-M-S-l") 'windmove-right)
+  ;(global-set-key (kbd "C-M-S-h") 'fm-left-frame)
+  ;(global-set-key (kbd "C-M-S-j") 'fm-down-frame)
+  ;(global-set-key (kbd "C-M-S-k") 'fm-up-frame)
+  ;(global-set-key (kbd "C-M-S-l") 'fm-right-frame)
 
 
   ;; For mac osx - 2 monitors
