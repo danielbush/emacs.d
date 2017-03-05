@@ -5,7 +5,11 @@ I used home brew to install EMACS and ag.
 ag lives in /usr/local/bin.
 Run this to ensure helm can access /usr/local/bin."
   (interactive)
-  (setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
+
+  ;; I think this is already there.
+  ;; It will mess up node setenv if it runs.
+  ;(setenv "PATH" (concat "/usr/local/bin:" (getenv "PATH")))
+
   ;(setq exec-path (append exec-path '("/usr/local/bin")))
   (setq exec-path (append '("/usr/local/bin") exec-path))
   )

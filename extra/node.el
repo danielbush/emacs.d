@@ -27,7 +27,7 @@
   (let* ((buffer-name (me/make-command-buffer-name (concat "npm run " command))))
     (async-shell-command (concat "TERM=xterm " me/npm-cmd " run " command) buffer-name)
     ;(message (concat "TERM=xterm " me/npm-cmd " run " command))
-    (me/tidy-up-after-finish buffer-name)
+    ;(me/tidy-up-after-finish buffer-name)
     ))
 
 (defun me/npm/run/test ()
