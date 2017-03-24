@@ -81,11 +81,9 @@ Motivation: cleaning up escape chars after running npm run test and related."
      (replace-regexp-in-string "\\[[0-9]+[GKJ]" "" output)))
   )
 
-(defvar me/node "node")
-
 (defun me/node-run-this-file ()
   (interactive)
-  (async-shell-command (format "%s %s" me/node (me/this-file)))
+  (async-shell-command (format "%s %s" me/node-cmd (me/this-file)))
   )
 
 ;; From http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable .
