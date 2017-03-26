@@ -10,7 +10,7 @@
 ;(defvar me/npm-cmd "/Users/daniel.bush/.nvm/versions/node/v6.9.4/bin/npm" )
 (defvar me/npm-cmd "npm" )
 
-(setenv "PATH" "/Users/daniel.bush/.nvm/versions/node/v6.9.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin")
+(setenv "PATH" "~/.nvm/versions/node/v6.9.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin")
 
 
 (defun me/npm (command)
