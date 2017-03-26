@@ -25,6 +25,7 @@
   (load (concat user-emacs-directory "me/extra/windows.el"))
   (load (concat user-emacs-directory "me/extra/elscreen.el"))
   (load (concat user-emacs-directory "me/extra/frames.el"))
+  (load (concat user-emacs-directory "me/extra/ibuffer.el"))
   )
 
 (defun me/load-unsafe-for-domain ()

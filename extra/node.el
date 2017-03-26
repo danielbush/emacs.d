@@ -10,14 +10,14 @@
 ;(defvar me/npm-cmd "/Users/daniel.bush/.nvm/versions/node/v6.9.4/bin/npm" )
 (defvar me/npm-cmd "npm" )
 
-(setenv "PATH" "/Users/daniel.bush/.nvm/versions/node/v6.9.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin")
+(setenv "PATH" "~/.nvm/versions/node/v6.9.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin")
 
 
 (defun me/npm (command)
   "Run npm COMMAND and save to a unique buffer."
   (interactive "snpm: ")
   (let* ((buffer-name (me/make-command-buffer-name (concat "npm " command))))
-    (async-shell-command (concat "TERM=dumb " me/npm-cmd " " command) buffer-name)
+    (async-shell-command (concat "TERM=xterm " me/npm-cmd " " command) buffer-name)
     ;(me/tidy-up-after-finish buffer-name)
     ))
 
