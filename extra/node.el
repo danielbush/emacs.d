@@ -17,7 +17,7 @@
   "Run npm COMMAND and save to a unique buffer."
   (interactive "snpm: ")
   (let* ((buffer-name (me/make-command-buffer-name (concat "npm " command))))
-    (async-shell-command (concat "TERM=dumb " me/npm-cmd " " command) buffer-name)
+    (async-shell-command (concat "TERM=xterm " me/npm-cmd " " command) buffer-name)
     ;(me/tidy-up-after-finish buffer-name)
     ))
 
