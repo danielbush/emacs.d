@@ -2,6 +2,10 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+(global-set-key
+ (kbd "C-x C-b")
+ ;; also try: locate-dominating-file
+ '(lambda () (interactive) (if (vc-root-dir) (call-interactively 'projectile-ibuffer) (call-interactively 'ibuffer))))
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 (global-set-key (kbd "C-x c b") 'helm-resume)
