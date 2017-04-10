@@ -33,20 +33,27 @@
 	golden-ratio
 	markdown-mode
 
+        paredit
         yaml-mode
+	json-mode
+        tidy
+
 	js2-mode
 	rjsx-mode
-	json-mode
-	php-mode
+        nvm
 	web-mode
+        flow-mode
+        company-flow
+
+	php-mode
+
 	ruby-mode
 	ruby-additional
 	rspec-mode
 	inf-ruby
 	rvm
-        tidy
+
         csharp-mode
-        paredit
         haskell-mode
 
         docker
