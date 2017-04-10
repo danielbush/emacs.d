@@ -15,6 +15,7 @@
 (defun me/load-unsafe ()
   "Stuff that may break in a new EMACS."
   (interactive)
+  (server-start)
   (load (concat user-emacs-directory "me/settings.el"))
   (load (concat user-emacs-directory "me/bindings.el"))
   (load (concat user-emacs-directory "me/extra/macosx.el"))
@@ -30,7 +31,6 @@
 
 (defun me/load-unsafe-for-domain ()
   (interactive)
-  (server-start)
   (me/load-unsafe)
   (me/mac-fonts)
   (me/mac-load-PATH)
