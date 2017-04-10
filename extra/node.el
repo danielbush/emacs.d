@@ -21,6 +21,20 @@
     ;(me/tidy-up-after-finish buffer-name)
     ))
 
+(defun me/yarn (command)
+  "Run yarn COMMAND and save to a unique buffer."
+  (interactive "syarn: ")
+  (let* ((buffer-name (me/make-command-buffer-name (concat "yarn " command))))
+    (async-shell-command (concat "TERM=xterm " me/yarn-cmd " " command) buffer-name)
+    ))
+
+(defun me/yarn/run (command)
+  "Run yarn run COMMAND and save to a unique buffer."
+  (interactive "syarn run: ")
+  (let* ((buffer-name (me/make-command-buffer-name (concat "yarn run " command))))
+    (async-shell-command (concat "TERM=xterm " me/yarn-cmd " run " command) buffer-name)
+    ))
+
 (defun me/npm/run (command)
   "Run npm run COMMAND and save to a unique buffer."
   (interactive "snpm run: ")
