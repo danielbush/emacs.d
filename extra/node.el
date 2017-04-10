@@ -90,6 +90,22 @@ Motivation: cleaning up escape chars after running npm run test and related."
 ;; Because of https://github.com/eslint/eslint/issues/1238 .
 
 (require 'flycheck)
+
+(defun me/flycheck-flow ()
+  "Set up flycheck-flow in addition to eslint and also register it for rjsx-mode.
+
+flycheck-add-next-checker is a mystery - works for me if I set eslint to run after it, BOTH checkers will work.
+But I suspect this will break again.
+See https://github.com/lbolla/emacs-flycheck-flow/blob/master/flycheck-flow.el .
+flycheck-flow uses 'flow check-contents' - see this issue: https://github.com/facebook/flow/issues/2235. "
+
+  (interactive)
+  (require 'flycheck-flow)
+  (flycheck-add-mode 'javascript-flow 'rjsx-mode)
+  (flycheck-add-mode 'javascript-flow 'web-mode)
+  (flycheck-add-next-checker 'javascript-flow 'javascript-eslint )
+  )
+
 (defun me/use-eslint-from-node-modules ()
   "Use locally (npm) installed eslint so that we can use eslintConfig in package.json."
   (message "running eslint hook")
