@@ -35,18 +35,7 @@
 
         paredit
         yaml-mode
-        js2-mode
-        rjsx-mode
         json-mode
-        flow-mode
-        flycheck-flow
-        php-mode
-        web-mode
-        ruby-mode
-        ruby-additional
-        rspec-mode
-        inf-ruby
-        rvm
         tidy
 
         js2-mode
@@ -54,6 +43,7 @@
         nvm
         web-mode
         flow-mode
+        flycheck-flow
         company-flow
 
         php-mode
