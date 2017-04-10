@@ -3,12 +3,12 @@
 (setq me/packages
       '(
 
-	yasnippet
+        yasnippet
 
-	helm
-	helm-ag
-	projectile
-	helm-projectile
+        helm
+        helm-ag
+        projectile
+        helm-projectile
         helm-swoop
         helm-ls-git
 
@@ -18,40 +18,40 @@
         window-numbering
         framemove
 
-	elscreen
-	elscreen-persist
+        elscreen
+        elscreen-persist
 
-	magit
-	flycheck
-	helm-flycheck
-	editorconfig
-	wgrep
-	wgrep-helm
+        magit
+        flycheck
+        helm-flycheck
+        editorconfig
+        wgrep
+        wgrep-helm
 
-	zenburn-theme
-	monokai-theme
-	golden-ratio
-	markdown-mode
+        zenburn-theme
+        monokai-theme
+        golden-ratio
+        markdown-mode
 
         paredit
         yaml-mode
-	json-mode
+        json-mode
         tidy
 
-	js2-mode
-	rjsx-mode
+        js2-mode
+        rjsx-mode
         nvm
-	web-mode
+        web-mode
         flow-mode
         company-flow
 
-	php-mode
+        php-mode
 
-	ruby-mode
-	ruby-additional
-	rspec-mode
-	inf-ruby
-	rvm
+        ruby-mode
+        ruby-additional
+        rspec-mode
+        inf-ruby
+        rvm
 
         csharp-mode
         haskell-mode
@@ -79,8 +79,8 @@
     (dolist (pkg me/packages)
       ;(message (symbol-name pkg))
       (when (not (package-installed-p pkg))
-	(message (concat "installing " (symbol-name pkg)))
-	(package-install pkg)))))
+        (message (concat "installing " (symbol-name pkg)))
+        (package-install pkg)))))
 
 (defun me/package-list-unaccounted-packages ()
   "Like `package-list-packages', but shows only the packages that
@@ -89,7 +89,6 @@
   (interactive)
   (package-show-package-list
    (remove-if-not (lambda (x) (and (not (memq x me/packages))
-				   (not (package-built-in-p x))
-				   (package-installed-p x)))
+                                   (not (package-built-in-p x))
+                                   (package-installed-p x)))
                   (mapcar 'car package-archive-contents))))
-
