@@ -16,6 +16,7 @@
 (global-set-key (kbd "C-x p s s") 'helm-do-ag)
 (global-set-key (kbd "M-s o") 'helm-swoop)
 (global-set-key (kbd "M-s o") 'helm-occur)
+(global-set-key (kbd "M-s i") 'helm-swoop)
 (global-set-key (kbd "C-x c M-s o") 'occur)
 
 (global-set-key (kbd "C-x C-o") 'helm-elscreen)
