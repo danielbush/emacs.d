@@ -5,12 +5,22 @@
 (require 'me/utils (concat default-directory "utils.el"))
 
 ;(defvar me/node-cmd "/Users/daniel.bush/.nvm/versions/node/v6.9.4/bin/node" )
-(defvar me/node-cmd "node" )
+(defvar me/node-cmd "/Users/daniel.bush/.nvm/versions/node/v7.8.0/bin/node" )
+;(defvar me/node-cmd "node" )
 
 ;(defvar me/npm-cmd "/Users/daniel.bush/.nvm/versions/node/v6.9.4/bin/npm" )
-(defvar me/npm-cmd "npm" )
+(defvar me/npm-cmd "/Users/daniel.bush/.nvm/versions/node/v7.8.0/bin/npm" )
+;(defvar me/npm-cmd "npm" )
 
-(setenv "PATH" "~/.nvm/versions/node/v6.9.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin")
+(defvar me/yarn-cmd "yarn" )
+(defvar me/node6-path "~/.nvm/versions/node/v6.9.4/bin" )
+(defvar me/node7-path "~/.nvm/versions/node/v7.8.0/bin" )
+(defvar me/node/orig-exec-path exec-path)
+(defvar me/node/orig-PATH (getenv "PATH"))
+
+;(setenv "PATH" "~/.nvm/versions/node/v6.9.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin")
+(setenv "PATH" (format "%s:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" me/node7-path ))
+(setq exec-path (append '(me/node7-path) exec-path))
 
 
 (defun me/npm (command)
@@ -48,7 +58,7 @@
   "Run npm test and save to a unique buffer."
   (interactive)
   (let* ((buffer-name (me/make-command-buffer-name "npm run test")))
-    (async-shell-command (concat "TERM=xterm " me/npm-cmd " run test") buffer-name)
+    (async-shell-command (format "TERM=xterm %s %s run test" me/node-cmd me/npm-cmd) buffer-name)
     ;(me/tidy-up-after-finish buffer-name)
     ))
 
