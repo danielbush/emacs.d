@@ -5,12 +5,22 @@
 (require 'me/utils (concat default-directory "utils.el"))
 
 ;(defvar me/node-cmd "/Users/daniel.bush/.nvm/versions/node/v6.9.4/bin/node" )
-(defvar me/node-cmd "node" )
+(defvar me/node-cmd "/Users/daniel.bush/.nvm/versions/node/v7.8.0/bin/node" )
+;(defvar me/node-cmd "node" )
 
 ;(defvar me/npm-cmd "/Users/daniel.bush/.nvm/versions/node/v6.9.4/bin/npm" )
-(defvar me/npm-cmd "npm" )
+(defvar me/npm-cmd "/Users/daniel.bush/.nvm/versions/node/v7.8.0/bin/npm" )
+;(defvar me/npm-cmd "npm" )
 
-(setenv "PATH" "~/.nvm/versions/node/v6.9.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin")
+(defvar me/yarn-cmd "yarn" )
+(defvar me/node6-path "~/.nvm/versions/node/v6.9.4/bin" )
+(defvar me/node7-path "~/.nvm/versions/node/v7.8.0/bin" )
+(defvar me/node/orig-exec-path exec-path)
+(defvar me/node/orig-PATH (getenv "PATH"))
+
+;(setenv "PATH" "~/.nvm/versions/node/v6.9.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin")
+(setenv "PATH" (format "%s:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" me/node7-path ))
+(setq exec-path (append '(me/node7-path) exec-path))
 
 
 (defun me/npm (command)
@@ -19,6 +29,20 @@
   (let* ((buffer-name (me/make-command-buffer-name (concat "npm " command))))
     (async-shell-command (concat "TERM=xterm " me/npm-cmd " " command) buffer-name)
     ;(me/tidy-up-after-finish buffer-name)
+    ))
+
+(defun me/yarn (command)
+  "Run yarn COMMAND and save to a unique buffer."
+  (interactive "syarn: ")
+  (let* ((buffer-name (me/make-command-buffer-name (concat "yarn " command))))
+    (async-shell-command (concat "TERM=xterm " me/yarn-cmd " " command) buffer-name)
+    ))
+
+(defun me/yarn/run (command)
+  "Run yarn run COMMAND and save to a unique buffer."
+  (interactive "syarn run: ")
+  (let* ((buffer-name (me/make-command-buffer-name (concat "yarn run " command))))
+    (async-shell-command (concat "TERM=xterm " me/yarn-cmd " run " command) buffer-name)
     ))
 
 (defun me/npm/run (command)
@@ -34,7 +58,7 @@
   "Run npm test and save to a unique buffer."
   (interactive)
   (let* ((buffer-name (me/make-command-buffer-name "npm run test")))
-    (async-shell-command (concat "TERM=xterm " me/npm-cmd " run test") buffer-name)
+    (async-shell-command (format "TERM=xterm %s %s run test" me/node-cmd me/npm-cmd) buffer-name)
     ;(me/tidy-up-after-finish buffer-name)
     ))
 
@@ -90,6 +114,22 @@ Motivation: cleaning up escape chars after running npm run test and related."
 ;; Because of https://github.com/eslint/eslint/issues/1238 .
 
 (require 'flycheck)
+
+(defun me/flycheck-flow ()
+  "Set up flycheck-flow in addition to eslint and also register it for rjsx-mode.
+
+flycheck-add-next-checker is a mystery - works for me if I set eslint to run after it, BOTH checkers will work.
+But I suspect this will break again.
+See https://github.com/lbolla/emacs-flycheck-flow/blob/master/flycheck-flow.el .
+flycheck-flow uses 'flow check-contents' - see this issue: https://github.com/facebook/flow/issues/2235. "
+
+  (interactive)
+  (require 'flycheck-flow)
+  (flycheck-add-mode 'javascript-flow 'rjsx-mode)
+  (flycheck-add-mode 'javascript-flow 'web-mode)
+  (flycheck-add-next-checker 'javascript-flow 'javascript-eslint )
+  )
+
 (defun me/use-eslint-from-node-modules ()
   "Use locally (npm) installed eslint so that we can use eslintConfig in package.json."
   (message "running eslint hook")

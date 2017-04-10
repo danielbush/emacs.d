@@ -98,8 +98,8 @@ or cascaded."
   (interactive)
   (progn
     (defun me/font-small () (interactive) (set-face-attribute 'default nil :font "Menlo 10" ))
-    (defun me/font-med () (interactive) (set-face-attribute 'default nil :font "Menlo 12" ))
-    (defun me/font-medium () (interactive) (set-face-attribute 'default nil :font "Menlo 13" ))
+    (defun me/font-med () (interactive) (set-face-attribute 'default nil :font "Menlo 11" ))
+    (defun me/font-medium () (interactive) (set-face-attribute 'default nil :font "Menlo 12" ))
     (defun me/font-large () (interactive) (set-face-attribute 'default nil :font "Menlo 14" ))
     (defun me/font-xlarge () (interactive) (set-face-attribute 'default nil :font "Menlo 16" ))
     ))
@@ -111,6 +111,3 @@ or cascaded."
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 
 (set-face-attribute 'region nil :foreground "#777" :background "#ffa")
-
-
-;(me/font-medium)
