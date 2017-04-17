@@ -4,12 +4,12 @@
 (require 'projectile)
 (require 'me/utils (concat default-directory "utils.el"))
 
-;(defvar me/node-cmd "/Users/daniel.bush/.nvm/versions/node/v6.9.4/bin/node" )
-(defvar me/node-cmd "/Users/daniel.bush/.nvm/versions/node/v7.8.0/bin/node" )
+;(defvar me/node-cmd "~/.nvm/versions/node/v6.9.4/bin/node" )
+(defvar me/node-cmd "~/.nvm/versions/node/v7.8.0/bin/node" )
 ;(defvar me/node-cmd "node" )
 
-;(defvar me/npm-cmd "/Users/daniel.bush/.nvm/versions/node/v6.9.4/bin/npm" )
-(defvar me/npm-cmd "/Users/daniel.bush/.nvm/versions/node/v7.8.0/bin/npm" )
+;(defvar me/npm-cmd "~/.nvm/versions/node/v6.9.4/bin/npm" )
+(defvar me/npm-cmd "~/.nvm/versions/node/v7.8.0/bin/npm" )
 ;(defvar me/npm-cmd "npm" )
 
 (defvar me/yarn-cmd "yarn" )
