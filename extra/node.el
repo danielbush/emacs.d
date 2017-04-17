@@ -31,20 +31,6 @@
     ;(me/tidy-up-after-finish buffer-name)
     ))
 
-(defun me/yarn (command)
-  "Run yarn COMMAND and save to a unique buffer."
-  (interactive "syarn: ")
-  (let* ((buffer-name (me/make-command-buffer-name (concat "yarn " command))))
-    (async-shell-command (concat "TERM=xterm " me/yarn-cmd " " command) buffer-name)
-    ))
-
-(defun me/yarn/run (command)
-  "Run yarn run COMMAND and save to a unique buffer."
-  (interactive "syarn run: ")
-  (let* ((buffer-name (me/make-command-buffer-name (concat "yarn run " command))))
-    (async-shell-command (concat "TERM=xterm " me/yarn-cmd " run " command) buffer-name)
-    ))
-
 (defun me/npm/run (command)
   "Run npm run COMMAND and save to a unique buffer."
   (interactive "snpm run: ")
@@ -61,6 +47,31 @@
     (async-shell-command (format "TERM=xterm %s %s run test" me/node-cmd me/npm-cmd) buffer-name)
     ;(me/tidy-up-after-finish buffer-name)
     ))
+
+(defun me/projectile-run-yarn (command)
+  "Run yarn in projectile root.
+
+COMMAND is a shell command string."
+  (let* ((buffer-name (me/make-command-buffer-name
+                       (concat "yarn " (nth 0 (split-string command)))))
+         (root (ignore-errors (projectile-project-root))) )
+    (with-temp-buffer
+      (if root
+          (progn
+            (cd root)
+            (async-shell-command (concat "TERM=xterm " me/yarn-cmd " " command) buffer-name) )
+        (message "Can't find project root.") ))))
+
+(defun me/yarn (command)
+  "Run yarn COMMAND and save to a unique buffer."
+  (interactive "syarn: ")
+  (me/projectile-run-yarn command) )
+
+(defun me/yarn/run (command)
+  "Run yarn run COMMAND and save to a unique buffer."
+  (interactive "syarn run: ")
+  (me/projectile-run-yarn (concat "run " command)) )
+
 
 (defun me/tidy-up-after-finish (buffer-name)
   (me/do-thing-after-buffer-process
