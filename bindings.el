@@ -5,7 +5,7 @@
 (global-set-key
  (kbd "C-x C-b")
  ;; also try: locate-dominating-file
- '(lambda () (interactive) (if (vc-root-dir) (call-interactively 'projectile-ibuffer) (call-interactively 'ibuffer))))
+ '(lambda () (interactive) (if (ignore-errors (projectile-project-root)) (call-interactively 'projectile-ibuffer) (call-interactively 'ibuffer))))
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 (global-set-key (kbd "C-x c b") 'helm-resume)
