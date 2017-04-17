@@ -114,6 +114,7 @@ Motivation: cleaning up escape chars after running npm run test and related."
 ;; Because of https://github.com/eslint/eslint/issues/1238 .
 
 (require 'flycheck)
+(require 'flycheck-flow)
 
 (defun me/flycheck-flow ()
   "Set up flycheck-flow in addition to eslint and also register it for rjsx-mode.
