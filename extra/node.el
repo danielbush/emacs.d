@@ -125,26 +125,34 @@ See https://github.com/lbolla/emacs-flycheck-flow/blob/master/flycheck-flow.el .
 flycheck-flow uses 'flow check-contents' - see this issue: https://github.com/facebook/flow/issues/2235. "
 
   (interactive)
-  (require 'flycheck-flow)
   (flycheck-add-mode 'javascript-flow 'rjsx-mode)
   (flycheck-add-mode 'javascript-flow 'web-mode)
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
   (flycheck-add-next-checker 'javascript-flow 'javascript-eslint )
   )
+
 
 (defun me/use-eslint-from-node-modules ()
   "Use locally (npm) installed eslint so that we can use eslintConfig in package.json."
   (message "running eslint hook")
-  (let* ((root (locate-dominating-file
-                (or (buffer-file-name) default-directory)
-                "node_modules"))
-         (eslint (and root
-                      (expand-file-name "node_modules/eslint/bin/eslint.js"
-                                        root))))
+  (let* ((root (locate-dominating-file (or (buffer-file-name) default-directory) "node_modules"))
+         (eslint (and root (expand-file-name "node_modules/eslint/bin/eslint.js" root))))
     (message eslint)
     (when (and eslint (file-executable-p eslint))
       (setq-local flycheck-javascript-eslint-executable eslint))))
 
+(defun me/use-script-from-node-modules (node_modules_path)
+  "Use locally (npm) installed script so that we can use script.
+
+NODE_MODULES_PATH example: node_modules/eslint/bin/eslint.js."
+  (let* ((root (locate-dominating-file (or (buffer-file-name) default-directory) "node_modules"))
+         (script (and root (expand-file-name node_modules_path root))))
+    (message script)
+    (when (and script (file-executable-p script))
+      (setq-local flycheck-javascript-flow-executable script))))
+
 (add-hook 'flycheck-mode-hook #'me/use-eslint-from-node-modules)
+(add-hook 'flycheck-mode-hook #'(lambda () (me/use-script-from-node-modules "node_modules/.bin/flow")))
 
 
 (provide 'me/node)
