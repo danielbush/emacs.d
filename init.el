@@ -27,6 +27,11 @@
   (load (concat user-emacs-directory "me/extra/elscreen.el"))
   (load (concat user-emacs-directory "me/extra/frames.el"))
   (load (concat user-emacs-directory "me/extra/ibuffer.el"))
+
+  (me/setup-elscreen)
+
+  (select-frame (make-frame))
+  (me/setup-elscreen-alternative-for-domain)
   )
 
 (defun me/load-unsafe-for-domain ()
