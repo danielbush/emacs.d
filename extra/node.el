@@ -116,6 +116,12 @@ Motivation: cleaning up escape chars after running npm run test and related."
      (replace-regexp-in-string "\\[[0-9]+[GKJ]" "" output)))
   )
 
+(defun me/shell-run-this-file ()
+  (interactive)
+  (let ((cmd (format "%s %s" "bash" (me/this-file))))
+    (async-shell-command  cmd (format "*bash-%s*" cmd))
+    ))
+
 (defun me/node-run-this-file ()
   (interactive)
   (async-shell-command (format "%s %s" me/node-cmd (me/this-file)))
