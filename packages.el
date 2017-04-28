@@ -43,6 +43,7 @@
         nvm
         web-mode
         flow-mode
+        flow-minor-mode
         flycheck-flow
         company-flow
 
