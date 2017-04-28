@@ -74,9 +74,13 @@
   ;(global-set-key (kbd "M-q") 'select-frame-by-name)
 
   (global-set-key (kbd "M-1") '(lambda () (interactive) (select-frame-by-name "1")))
+  (global-set-key (kbd "M-C-1") '(lambda () (interactive) (select-frame-by-name "1")))
   (global-set-key (kbd "M-2") '(lambda () (interactive) (select-frame-by-name "2")))
+  (global-set-key (kbd "M-C-2") '(lambda () (interactive) (select-frame-by-name "2")))
   (global-set-key (kbd "M-3") '(lambda () (interactive) (select-frame-by-name "3")))
+  (global-set-key (kbd "M-C-3") '(lambda () (interactive) (select-frame-by-name "3")))
   (global-set-key (kbd "M-4") '(lambda () (interactive) (select-frame-by-name "4")))
+  (global-set-key (kbd "M-C-4") '(lambda () (interactive) (select-frame-by-name "4")))
   )
 
 (global-set-key (kbd "C-c l") 'toggle-truncate-lines)
