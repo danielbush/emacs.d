@@ -30,6 +30,7 @@
 
         zenburn-theme
         monokai-theme
+        dracula-theme
         golden-ratio
         markdown-mode
 
