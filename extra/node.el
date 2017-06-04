@@ -53,7 +53,11 @@
 
 COMMAND is a shell command string."
   (let* ((buffer-name (me/make-command-buffer-name
-                       (concat "yarn " (nth 0 (split-string command)))))
+                       (concat "yarn "
+                               (nth 0 (split-string command))
+                               " "
+                               (nth 1 (split-string command))
+                               )))
          (root (ignore-errors (projectile-project-root))) )
     (with-temp-buffer
       (if root
