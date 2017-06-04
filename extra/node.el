@@ -13,6 +13,8 @@
 ;(defvar me/npm-cmd "npm" )
 
 (defvar me/yarn-cmd "yarn" )
+(defvar me/yarn-cmd "~/.nvm/versions/node/v7.8.0/bin/yarn")
+
 (defvar me/node6-path "~/.nvm/versions/node/v6.9.4/bin" )
 (defvar me/node7-path "~/.nvm/versions/node/v7.8.0/bin" )
 (defvar me/node/orig-exec-path exec-path)
