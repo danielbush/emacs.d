@@ -47,6 +47,8 @@
         flycheck-flow
         company-flow
 
+        groovy-mode
+
         php-mode
 
         ruby-mode

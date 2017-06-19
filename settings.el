@@ -97,6 +97,7 @@ or cascaded."
   "Fonts for mac os x."
   (interactive)
   (progn
+    (defun me/font-x-small () (interactive) (set-face-attribute 'default nil :font "Menlo 9" ))
     (defun me/font-small () (interactive) (set-face-attribute 'default nil :font "Menlo 10" ))
     (defun me/font-med () (interactive) (set-face-attribute 'default nil :font "Menlo 11" ))
     (defun me/font-medium () (interactive) (set-face-attribute 'default nil :font "Menlo 12" ))
