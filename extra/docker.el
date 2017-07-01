@@ -18,6 +18,16 @@
   (interactive)
   (async-shell-command "docker images" "*docker images*"))
 
+(defun me/docker-volumes ()
+  "Run docker volumes."
+  (interactive)
+  (async-shell-command "docker volume ls" "*docker volumes*"))
+
+(defun me/docker-volumes-dangling ()
+  "Run docker volumes."
+  (interactive)
+  (async-shell-command "docker volume ls --filter dangling=true" "*docker volumes dangling*"))
+
 (defun me/docker-port ()
   "Run docker port."
   (interactive)
