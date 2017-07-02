@@ -13,6 +13,8 @@
 ;(defvar me/npm-cmd "npm" )
 
 (defvar me/yarn-cmd "yarn" )
+(defvar me/yarn-cmd "~/.nvm/versions/node/v7.8.0/bin/yarn")
+
 (defvar me/node6-path "~/.nvm/versions/node/v6.9.4/bin" )
 (defvar me/node7-path "~/.nvm/versions/node/v7.8.0/bin" )
 (defvar me/node/orig-exec-path exec-path)
@@ -62,15 +64,67 @@ COMMAND is a shell command string."
             (async-shell-command (concat "TERM=xterm " me/yarn-cmd " " command) buffer-name) )
         (message "Can't find project root.") ))))
 
-(defun me/yarn (command)
+(defun me/yarn-no-redirect (command)
   "Run yarn COMMAND and save to a unique buffer."
-  (interactive "syarn: ")
+  ;(interactive "syarn: ")
   (me/projectile-run-yarn command) )
+
+(defun me/yarn-with-redirect (command)
+  "Run me/yarn with COMMAND redirect stdout to a file.
+
+This seems to be a lot less problematic then letting the output go to EMACS."
+  ;(interactive "syarn: ")
+  (me/projectile-run-yarn (concat command ">> /tmp/yarn.log 2>&1"))
+  (view-file-other-window "/tmp/yarn.log")
+  (turn-on-auto-revert-tail-mode)
+  )
+
+(defun me/yarn/run-no-redirect (command)
+  "Run yarn run COMMAND and save to a unique buffer."
+  ;(interactive "syarn run: ")
+  (me/projectile-run-yarn (concat "run " command)) )
+
+(defun me/yarn/run-with-redirect (command)
+  "Run yarn run COMMAND and save to a unique buffer."
+  ;(interactive "syarn run: ")
+  (me/projectile-run-yarn (concat (concat "run " command) ">> /tmp/yarn.log 2>&1"))
+  (view-file-other-window "/tmp/yarn.log")
+  (turn-on-auto-revert-tail-mode)
+  )
 
 (defun me/yarn/run (command)
   "Run yarn run COMMAND and save to a unique buffer."
   (interactive "syarn run: ")
-  (me/projectile-run-yarn (concat "run " command)) )
+  (if me/yarn-redirect-toggle
+      (me/yarn/run-with-redirect command)
+      (me/yarn/run-no-redirect command)
+      )
+  )
+
+(defun me/yarn (command)
+  "Run yarn COMMAND and save to a unique buffer."
+  (interactive "syarn: ")
+  (if me/yarn-redirect-toggle
+      (me/yarn-with-redirect command)
+      (me/yarn-no-redirect command)
+      )
+  )
+
+(setq me/yarn-redirect-toggle t)
+
+(defun me/toggle-yarn-redirect ()
+  (interactive)
+  (setq me/yarn-redirect-toggle (not me/yarn-redirect-toggle))
+  (if me/yarn-redirect-toggle
+      (message "Redirecting yarn to file.")
+    (message "NOT redirecting yarn to file."))
+  )
+
+(defun me/yarn-truncate-log ()
+  (interactive)
+  (shell-command "cat /dev/null >/tmp/yarn.log")
+)
+
 
 
 (defun me/tidy-up-after-finish (buffer-name)

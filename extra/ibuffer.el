@@ -13,6 +13,9 @@
                            (mode . js3-mode)
                            (mode . javascript-mode)
                            ))
+                 ("shell" (or
+                             (name . "^\\*shell")
+                             ))
                  ("command" (or
                              (name . "^\\*command")
                              (name . "^\\*Async")
