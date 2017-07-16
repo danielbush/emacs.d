@@ -4,25 +4,49 @@
 (require 'projectile)
 (require 'me/utils (concat default-directory "utils.el"))
 
-;(defvar me/node-cmd "~/.nvm/versions/node/v6.9.4/bin/node" )
-(defvar me/node-cmd "~/.nvm/versions/node/v7.8.0/bin/node" )
-;(defvar me/node-cmd "node" )
+(defconst me/node/orig-exec-path exec-path)
+(defconst me/node/orig-PATH (getenv "PATH"))
+(defvar me/node-versions '("6.9.4" "7.8.0" "7.10.0" "8.1.3"))
+(defvar me/nvm-home "/home/danb/.nvm") ; "~/.nvm" seems to cause issues
 
-;(defvar me/npm-cmd "~/.nvm/versions/node/v6.9.4/bin/npm" )
-(defvar me/npm-cmd "~/.nvm/versions/node/v7.8.0/bin/npm" )
-;(defvar me/npm-cmd "npm" )
+;; (defvar me/node-cmd "~/.nvm/versions/node/v6.9.4/bin/node" )
+;; (defvar me/node-cmd "~/.nvm/versions/node/v7.8.0/bin/node" )
+;; (defvar me/node-cmd "/home/danb/.nvm/versions/node/v8.1.3/bin/node" )
+(defvar me/node-cmd "node")
 
-(defvar me/yarn-cmd "yarn" )
-(defvar me/yarn-cmd "~/.nvm/versions/node/v7.8.0/bin/yarn")
+;; (defvar me/npm-cmd "~/.nvm/versions/node/v6.9.4/bin/npm" )
+;; (defvar me/npm-cmd "~/.nvm/versions/node/v7.8.0/bin/npm" )
+;; (defvar me/npm-cmd "/home/danb/.nvm/versions/node/v8.1.3/bin/npm" )
+(defvar me/npm-cmd "npm")
 
-(defvar me/node6-path "~/.nvm/versions/node/v6.9.4/bin" )
-(defvar me/node7-path "~/.nvm/versions/node/v7.8.0/bin" )
-(defvar me/node/orig-exec-path exec-path)
-(defvar me/node/orig-PATH (getenv "PATH"))
+;; (defvar me/yarn-cmd "~/.nvm/versions/node/v7.8.0/bin/yarn")
+;; (defvar me/yarn-cmd "/home/danb/.nvm/versions/node/v8.1.3/bin/yarn")
+(defvar me/yarn-cmd "npm")
 
-;(setenv "PATH" "~/.nvm/versions/node/v6.9.4/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin")
-(setenv "PATH" (format "%s:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" me/node7-path ))
-(setq exec-path (append '(me/node7-path) exec-path))
+(defvar me/node-path "/usr/local/bin")
+
+(defun me/node/set-path ()
+  (interactive)
+  (setenv "PATH" (format "%s:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" me/node-path))
+  (setq exec-path (append '(me/node-path) exec-path))
+  )
+
+(defun me/select-node-version ()
+  (interactive)
+  (me/do-helm
+   :action-fn
+   (lambda (node-version)
+     (message node-version)
+     (let ((nvm-bin (format "%s/versions/node/v%s/bin" me/nvm-home node-version)))
+       (setq me/node-path (format "%s" nvm-bin))
+       (setq me/node-cmd (format "%s/node" nvm-bin))
+       (setq me/npm-cmd (format "%s/npm" nvm-bin))
+       (setq me/yarn-cmd (format "%s/yarn" nvm-bin))
+       (me/node/set-path)
+       ))
+   :list-fn (lambda () me/node-versions))
+  )
+
 
 
 (defun me/npm (command)
@@ -55,7 +79,7 @@
 
 COMMAND is a shell command string."
   (let* ((buffer-name (me/make-command-buffer-name
-                       (concat "yarn "
+                       (concat me/yarn-cmd " "
                                (nth 0 (split-string command))
                                " "
                                (nth 1 (split-string command))
