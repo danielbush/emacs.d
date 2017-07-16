@@ -23,6 +23,7 @@
   (load (concat user-emacs-directory "me/extra/utils.el"))
   (load (concat user-emacs-directory "me/extra/node.el"))
   (load (concat user-emacs-directory "me/extra/terraform.el"))
+  (load (concat user-emacs-directory "me/extra/ansible.el"))
   (load (concat user-emacs-directory "me/extra/docker.el"))
   (load (concat user-emacs-directory "me/extra/windows.el"))
   (load (concat user-emacs-directory "me/extra/elscreen.el"))
