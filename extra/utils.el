@@ -54,5 +54,18 @@ buffer (to prevent buffer proliferation)."
     (shell)
     (rename-buffer (concat "*shell " file "*")) ))
 
+(defun me/is-dedicated ()
+  (interactive)
+  (if (window-dedicated-p (get-buffer-window))
+      (message "Dedicated.")
+    (message "NOT dedicated.")))
+
+(defun me/toggle-dedicated-window ()
+  (interactive)
+  (let ((will-dedicate (not (window-dedicated-p (get-buffer-window)))))
+    (set-window-dedicated-p (get-buffer-window) will-dedicate)
+    (message (format "%sDedicating this window" (if will-dedicate "" "NOT ")))
+    ))
+
 (provide 'me/utils)
 ;;; utils.el ends here
