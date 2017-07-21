@@ -7,7 +7,7 @@
 (defconst me/node/orig-exec-path exec-path)
 (defconst me/node/orig-PATH (getenv "PATH"))
 (defvar me/node-versions '("6.9.4" "7.8.0" "7.10.0" "8.1.3"))
-(defvar me/nvm-home "/home/danb/.nvm") ; "~/.nvm" seems to cause issues
+(defvar me/nvm-home "/Users/daniel.bush/.nvm") ; "~/.nvm" seems to cause issues
 
 ;; (defvar me/node-cmd "~/.nvm/versions/node/v6.9.4/bin/node" )
 ;; (defvar me/node-cmd "~/.nvm/versions/node/v7.8.0/bin/node" )
