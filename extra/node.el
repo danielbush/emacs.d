@@ -6,8 +6,9 @@
 
 (defconst me/node/orig-exec-path exec-path)
 (defconst me/node/orig-PATH (getenv "PATH"))
-(defvar me/node-versions '("6.9.4" "7.8.0" "7.10.0" "8.1.3"))
-(defcustom me/nvm-home "/Users/daniel.bush/.nvm" "Path to .nvm.  ~/.nvm may not work." :group 'me)
+(defcustom me/node-versions '("6.9.4" "7.8.0" "7.10.0" "8.1.3") "List of node versions.")
+(defcustom me/nvm-home "/Users/daniel.bush/.nvm" "Path to .nvm.  ~/.nvm may not work." :group 'me/node)
+(defcustom me/yarn-redirect-toggle nil "Wether to always redirect generae me/yarn(/*) commands." :group 'me/node)
 
 (defun me/nvm-cmd-string (cmdString)
   (format "TERM=xterm sh -c '. %s/nvm.sh; nvm %s'" me/nvm-home cmdString)
@@ -151,8 +152,6 @@ This seems to be a lot less problematic then letting the output go to EMACS."
       (me/yarn-no-redirect command)
       )
   )
-
-(setq me/yarn-redirect-toggle t)
 
 (defun me/toggle-yarn-redirect ()
   (interactive)
