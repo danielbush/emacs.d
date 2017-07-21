@@ -93,6 +93,13 @@ COMMAND is a shell command string."
   ;(interactive "syarn: ")
   (me/projectile-run-yarn command) )
 
+(defun me/yarn-install-with-redirect ()
+  (interactive)
+  (me/projectile-run-yarn "install >> /tmp/yarn.log 2>&1")
+  (view-file-other-window "/tmp/yarn.log")
+  (turn-on-auto-revert-tail-mode)
+  )
+
 (defun me/yarn-with-redirect (command)
   "Run me/yarn with COMMAND redirect stdout to a file.
 
