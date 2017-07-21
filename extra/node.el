@@ -9,6 +9,17 @@
 (defvar me/node-versions '("6.9.4" "7.8.0" "7.10.0" "8.1.3"))
 (defcustom me/nvm-home "/Users/daniel.bush/.nvm" "Path to .nvm.  ~/.nvm may not work." :group 'me)
 
+(defun me/nvm-cmd-string (cmdString)
+  (format "TERM=xterm sh -c '. %s/nvm.sh; nvm %s'" me/nvm-home cmdString)
+  )
+
+(defun me/nvm (cmd)
+  (interactive "snvm ")
+  (async-shell-command
+   (me/nvm-cmd-string cmd)
+   (me/make-command-buffer-name (format "nvm %s" cmd)))
+  )
+
 ;; (defvar me/node-cmd "~/.nvm/versions/node/v6.9.4/bin/node" )
 ;; (defvar me/node-cmd "~/.nvm/versions/node/v7.8.0/bin/node" )
 ;; (defvar me/node-cmd "/home/danb/.nvm/versions/node/v8.1.3/bin/node" )
