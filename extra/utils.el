@@ -67,5 +67,13 @@ buffer (to prevent buffer proliferation)."
     (message (format "%sDedicating this window" (if will-dedicate "" "NOT ")))
     ))
 
+(defun me/dedicate ()
+  (interactive)
+  (set-window-dedicated-p (get-buffer-window) t))
+
+(defun me/undedicate ()
+  (interactive)
+  (set-window-dedicated-p (get-buffer-window) nil))
+
 (provide 'me/utils)
 ;;; utils.el ends here
