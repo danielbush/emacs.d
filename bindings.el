@@ -12,7 +12,6 @@
 (global-set-key (kbd "C-c v") 'helm-projectile-find-file)
 (global-set-key (kbd "C-c d") 'helm-projectile-find-dir)
 (global-set-key (kbd "C-c f") 'helm-projectile-ag)
-(global-set-key (kbd "C-c p p") 'helm-projectile-switch-project)
 (global-set-key (kbd "C-x p s s") 'helm-do-ag)
 (global-set-key (kbd "M-s i") 'helm-multi-swoop-projectile)
 (global-set-key (kbd "M-s i") 'helm-swoop)
@@ -91,5 +90,6 @@
 
 ; mac os x pain...
 (global-set-key (kbd "C-c C-b") 'other-frame)
-(global-set-key (kbd "C-c C-n") 'other-frame)
+(global-set-key (kbd "C-c C-p") 'switch-to-prev-buffer)
+(global-set-key (kbd "C-c C-n") 'switch-to-next-buffer)
 (global-set-key (kbd "C-x C-n") 'other-frame)
