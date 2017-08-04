@@ -91,5 +91,7 @@
 ; mac os x pain...
 (global-set-key (kbd "C-c C-b") 'other-frame)
 (global-set-key (kbd "C-c C-p") 'switch-to-prev-buffer)
+(global-set-key (kbd "C-c p") 'switch-to-prev-buffer)
 (global-set-key (kbd "C-c C-n") 'switch-to-next-buffer)
+(global-set-key (kbd "C-c n") 'switch-to-next-buffer)
 (global-set-key (kbd "C-x C-n") 'other-frame)
