@@ -69,6 +69,17 @@
     ;(me/tidy-up-after-finish buffer-name)
     ))
 
+(defun me/npm/publish-prerelease-domain (tag)
+  "Run npm publish on a pre-release..."
+  (interactive "sDid you set version in package.json [x.y.(z+1)-foo-bar-#issue.n]?  Tag [foo-bar-#issue]: ")
+  (let* ((buffer-name (me/make-command-buffer-name (concat "npm publish [prerelease]" tag))))
+    (async-shell-command
+     (format "TERM=xterm %s publish --tag %s --access restricted"
+             me/npm-cmd
+             tag)
+     buffer-name)
+    ))
+
 (defun me/npm/run (command)
   "Run npm run COMMAND and save to a unique buffer."
   (interactive "snpm run: ")
