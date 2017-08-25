@@ -233,11 +233,30 @@ Motivation: cleaning up escape chars after running npm run test and related."
   (async-shell-command (format "%s %s" me/node-cmd (me/this-file)))
   )
 
+(defun me/node-run-this-file-with-babel-register ()
+  (interactive)
+  (let* (
+         (filename (buffer-file-name))
+         (root (locate-dominating-file filename "node_modules")))
+    (with-temp-buffer
+      (if root
+          (progn
+            (async-shell-command (format "cd %s && %s -r babel-register %s" root me/node-cmd filename)))
+        (message "Can't find project root.") ))
+    )
+  )
+
 ;; From http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable .
 ;; Because of https://github.com/eslint/eslint/issues/1238 .
 
 (require 'flycheck)
 (require 'flycheck-flow)
+
+(defun me/kill-all-the-nodes ()
+  "May be useful when doing yarn run start because fe-build can be broken."
+  (interactive)
+  (async-shell-command  "pkill -f node")
+  )
 
 (defun me/flycheck-flow ()
   "Set up flycheck-flow in addition to eslint and also register it for rjsx-mode.
