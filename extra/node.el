@@ -6,7 +6,7 @@
 
 (defconst me/node/orig-exec-path exec-path)
 (defconst me/node/orig-PATH (getenv "PATH"))
-(defcustom me/node-versions '("6.9.4" "7.8.0" "7.10.0" "8.1.3") "List of node versions.")
+(defcustom me/node-versions '("6.9.4" "7.8.0" "7.10.0" "7.10.1" "8.1.3") "List of node versions.")
 (defcustom me/nvm-home "/Users/daniel.bush/.nvm" "Path to .nvm.  ~/.nvm may not work." :group 'me/node)
 (defcustom me/yarn-redirect-toggle nil "Wether to always redirect generae me/yarn(/*) commands." :group 'me/node)
 
@@ -67,6 +67,17 @@
   (let* ((buffer-name (me/make-command-buffer-name (concat "npm " command))))
     (async-shell-command (concat "TERM=xterm " me/npm-cmd " " command) buffer-name)
     ;(me/tidy-up-after-finish buffer-name)
+    ))
+
+(defun me/npm/publish-prerelease-domain (tag)
+  "Run npm publish on a pre-release..."
+  (interactive "sDid you set version in package.json [x.y.(z+1)-foo-bar-#issue.n]?  Tag [foo-bar-#issue]: ")
+  (let* ((buffer-name (me/make-command-buffer-name (concat "npm publish [prerelease]" tag))))
+    (async-shell-command
+     (format "TERM=xterm %s publish --tag %s --access restricted"
+             me/npm-cmd
+             tag)
+     buffer-name)
     ))
 
 (defun me/npm/run (command)
@@ -222,11 +233,30 @@ Motivation: cleaning up escape chars after running npm run test and related."
   (async-shell-command (format "%s %s" me/node-cmd (me/this-file)))
   )
 
+(defun me/node-run-this-file-with-babel-register ()
+  (interactive)
+  (let* (
+         (filename (buffer-file-name))
+         (root (locate-dominating-file filename "node_modules")))
+    (with-temp-buffer
+      (if root
+          (progn
+            (async-shell-command (format "cd %s && %s -r babel-register %s" root me/node-cmd filename)))
+        (message "Can't find project root.") ))
+    )
+  )
+
 ;; From http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable .
 ;; Because of https://github.com/eslint/eslint/issues/1238 .
 
 (require 'flycheck)
 (require 'flycheck-flow)
+
+(defun me/kill-all-the-nodes ()
+  "May be useful when doing yarn run start because fe-build can be broken."
+  (interactive)
+  (async-shell-command  "pkill -f node")
+  )
 
 (defun me/flycheck-flow ()
   "Set up flycheck-flow in addition to eslint and also register it for rjsx-mode.
