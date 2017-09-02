@@ -77,7 +77,7 @@ buffer (to prevent buffer proliferation)."
 
 (grep-apply-setting
  'grep-find-command
- "find . -type f ! -path './node_modules/*'  ! -path './serve/*' ! -path './coverage/*' -exec grep  -nH -e {} +"
+ "find . -type f ! -path './.git/*' ! -path './.venv/*' ! -path './node_modules/*'  ! -path './serve/*' ! -path './coverage/*' -exec grep  -nH -e {} +"
  ;; "find . ! -name \"*~\" ! -name \"#*#\" -type f -print0 | xargs -0 -e grep -nH -e "
  )
 
