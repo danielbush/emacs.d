@@ -29,6 +29,7 @@
   (load (concat user-emacs-directory "me/extra/elscreen.el"))
   (load (concat user-emacs-directory "me/extra/frames.el"))
   (load (concat user-emacs-directory "me/extra/ibuffer.el"))
+  (load (concat user-emacs-directory "me/extra/aws.el"))
 
   (me/setup-elscreen)
 
