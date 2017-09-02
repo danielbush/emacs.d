@@ -266,6 +266,13 @@ NODE_MODULES_PATH example: node_modules/eslint/bin/eslint.js."
 (add-hook 'flycheck-mode-hook #'me/use-eslint-from-node-modules)
 (add-hook 'flycheck-mode-hook #'(lambda () (me/use-script-from-node-modules "node_modules/.bin/flow")))
 
+(defun me/run-with-redirect (cmd)
+  "To avoid stupid terminal behaviours (ava)."
+  (interactive "syarn ")
+  (me/projectile-run-yarn (format "%s >> /tmp/yarn-with-redirect.log 2>&1" cmd))
+  (view-file-other-window "/tmp/yarn-with-redirect.log")
+  (turn-on-auto-revert-tail-mode)
+  )
 
 (provide 'me/node)
 ;;; node.el ends here
