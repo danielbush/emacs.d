@@ -33,6 +33,25 @@
   (let* ((buffer-name (me/make-command-buffer-name command)))
     (async-shell-command (concat "TERM=dumb " command) buffer-name)))
 
+(defun me/command-at-point (args)
+  (interactive "sArgs for command: ")
+  (let* (
+        (script-name (thing-at-point 'filename))
+        (buffer-name (me/make-command-buffer-name script-name))
+        )
+    (async-shell-command (format "TERM=dumb ./%s %s" script-name args) buffer-name)))
+    )
+)
+
+(defun me/command-this-file (args)
+  (interactive "sArgs for command: ")
+  (let* (
+         (script-name (file-name-nondirectory (buffer-file-name)))
+         (buffer-name (me/make-command-buffer-name script-name))
+         )
+    (async-shell-command (format "TERM=dumb ./%s %s" script-name args) buffer-name))
+  )
+
 (defun me/make-command-buffer-name (command)
   "Get project-root for use as name when running COMMAND..
 
