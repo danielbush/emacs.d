@@ -36,6 +36,7 @@
 
         paredit
         yaml-mode
+        hcl-mode
         json-mode
         tidy
 
