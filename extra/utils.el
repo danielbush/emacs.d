@@ -52,6 +52,31 @@
     (async-shell-command (format "TERM=dumb ./%s %s" script-name args) buffer-name))
   )
 
+(defun me/command-helm-file-projectile ()
+  (interactive)
+  (if (projectile-project-root)
+      (me/do-helm
+       :action-fn (lambda (file-name)
+                    (let* (
+                          (args (read-from-minibuffer "Args: "))
+                          (script-name (file-name-nondirectory file-name))
+                          (buffer-name (me/make-command-buffer-name script-name))
+                          )
+                      (async-shell-command (format "TERM=dumb ./%s %s" script-name args) buffer-name)
+                      ))
+       :list-fn (lambda ()
+                  (append
+                   (split-string
+                    (shell-command-to-string
+                     (format
+                      "find -L %s -type f -executable | egrep -v '/\.git|venv|node_modules'" (projectile-project-root)
+                      )))))
+       )
+    (message "you fail")
+    )
+  
+  )
+
 (defun me/make-command-buffer-name (command)
   "Get project-root for use as name when running COMMAND..
 
