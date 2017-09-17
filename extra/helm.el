@@ -26,6 +26,7 @@ CL-KEYS is required by cl--parsing-keywords.
 This seems to be the best way to call helm."
   (cl--parsing-keywords
       ((:list-fn (lambda () nil))
+       (:initial-input "")
        (:action-fn (lambda (candidate) (message (format "stub action for %s" candidate)))))
       nil
     (let ((candidate
@@ -33,6 +34,7 @@ This seems to be the best way to call helm."
             "prompt: "
             (funcall cl-list-fn)
             :buffer "*me/helm*"
+            :initial-input cl-initial-input
             :persistent-action (lambda (candidate) (message "here!"))
             :fuzzy t
             )))

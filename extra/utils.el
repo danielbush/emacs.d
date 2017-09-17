@@ -40,8 +40,6 @@
         (buffer-name (me/make-command-buffer-name script-name))
         )
     (async-shell-command (format "TERM=dumb ./%s %s" script-name args) buffer-name)))
-    )
-)
 
 (defun me/command-this-file (args)
   (interactive "sArgs for command: ")
@@ -52,17 +50,24 @@
     (async-shell-command (format "TERM=dumb ./%s %s" script-name args) buffer-name))
   )
 
+
+(defvar me/command-helm-file-projectile-last "")
 (defun me/command-helm-file-projectile ()
   (interactive)
   (if (projectile-project-root)
       (me/do-helm
+       :initial-input me/command-helm-file-projectile-last
        :action-fn (lambda (file-name)
                     (let* (
-                          (args (read-from-minibuffer "Args: "))
-                          (script-name (file-name-nondirectory file-name))
-                          (buffer-name (me/make-command-buffer-name script-name))
-                          )
-                      (async-shell-command (format "TERM=dumb ./%s %s" script-name args) buffer-name)
+                           (args (read-from-minibuffer "Args: "))
+                           ;; (script-name (file-name-nondirectory file-name))
+                           (script-name file-name)
+                           (buffer-name (me/make-command-buffer-name script-name))
+                           (cmd (format "TERM=dumb %s %s" script-name args))
+                           )
+                      (setq me/command-helm-file-projectile-last script-name)
+                      (message cmd)
+                      (async-shell-command cmd buffer-name)
                       ))
        :list-fn (lambda ()
                   (append
@@ -124,6 +129,7 @@ buffer (to prevent buffer proliferation)."
  "find . -type f ! -path './.git/*' ! -path './.venv/*' ! -path './node_modules/*'  ! -path './serve/*' ! -path './coverage/*' -exec grep  -nH -e {} +"
  ;; "find . ! -name \"*~\" ! -name \"#*#\" -type f -print0 | xargs -0 -e grep -nH -e "
  )
+
 
 (provide 'me/utils)
 ;;; utils.el ends here
