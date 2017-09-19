@@ -63,7 +63,7 @@
                            ;; (script-name (file-name-nondirectory file-name))
                            (script-name file-name)
                            (buffer-name (me/make-command-buffer-name script-name))
-                           (cmd (format "TERM=dumb %s %s" script-name args))
+                           (cmd (format "TERM=dumb cd %s && %s %s" (file-name-directory script-name) script-name args))
                            )
                       (setq me/command-helm-file-projectile-last script-name)
                       (message cmd)
