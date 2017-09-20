@@ -1,6 +1,8 @@
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-c b") 'helm-projectile-switch-to-buffer)
+(global-set-key (kbd "C-c C-b") 'helm-projectile-switch-to-buffer)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key
  (kbd "C-x C-b")
