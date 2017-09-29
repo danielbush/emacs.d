@@ -130,6 +130,14 @@ buffer (to prevent buffer proliferation)."
  ;; "find . ! -name \"*~\" ! -name \"#*#\" -type f -print0 | xargs -0 -e grep -nH -e "
  )
 
+(defun me/projectile-find-grep ()
+  (interactive)
+  (with-temp-buffer
+    (cd (projectile-project-root))
+    (call-interactively 'find-grep)
+    )
+  )
+
 
 (provide 'me/utils)
 ;;; utils.el ends here
