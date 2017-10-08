@@ -49,6 +49,14 @@
          )
     (async-shell-command (format "TERM=dumb ./%s %s" script-name args) buffer-name))
   )
+(defun me/command-dired-this-file (args)
+  (interactive "sArgs for command: ")
+  (let* (
+         (script-name (thing-at-point 'filename))
+         (buffer-name (me/make-command-buffer-name script-name))
+         )
+    (async-shell-command (format "TERM=dumb ./%s %s" script-name args) buffer-name))
+  )
 
 
 (defvar me/command-helm-file-projectile-last "")
