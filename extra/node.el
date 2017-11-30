@@ -6,7 +6,7 @@
 
 (defconst me/node/orig-exec-path exec-path)
 (defconst me/node/orig-PATH (getenv "PATH"))
-(defcustom me/node-versions '("6.9.4" "7.8.0" "7.10.0" "7.10.1" "8.1.3") "List of node versions.")
+(defcustom me/node-versions '("8.1.3" "8.9.1") "List of node versions.")
 (defcustom me/nvm-home "/Users/daniel.bush/.nvm" "Path to .nvm.  ~/.nvm may not work." :group 'me/node)
 (defcustom me/yarn-redirect-toggle nil "Wether to always redirect generae me/yarn(/*) commands." :group 'me/node)
 
