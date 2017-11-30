@@ -59,12 +59,12 @@
   )
 
 
-(defvar me/command-helm-file-projectile-last "")
-(defun me/command-helm-file-projectile ()
+(defvar me/run-command-helm-file-projectile-last "")
+(defun me/run-command-helm-file-projectile ()
   (interactive)
   (if (projectile-project-root)
       (me/do-helm
-       :initial-input me/command-helm-file-projectile-last
+       :initial-input me/run-command-helm-file-projectile-last
        :action-fn (lambda (file-name)
                     (let* (
                            (args (read-from-minibuffer "Args: "))
@@ -73,7 +73,7 @@
                            (buffer-name (me/make-command-buffer-name script-name))
                            (cmd (format "TERM=dumb cd %s && %s %s" (file-name-directory script-name) script-name args))
                            )
-                      (setq me/command-helm-file-projectile-last script-name)
+                      (setq me/run-command-helm-file-projectile-last script-name)
                       (message cmd)
                       (async-shell-command cmd buffer-name)
                       ))
