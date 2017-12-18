@@ -118,7 +118,7 @@ COMMAND is a shell command string."
 
 (defun me/yarn-install-with-redirect ()
   (interactive)
-  (me/projectile-run-yarn "install >> /tmp/yarn.log 2>&1")
+  (me/projectile-run-yarn "install --verbose >> /tmp/yarn.log 2>&1")
   (view-file-other-window "/tmp/yarn.log")
   (turn-on-auto-revert-tail-mode)
   )
