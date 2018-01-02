@@ -5,7 +5,7 @@
 (defun me/docker-exec-bash ()
   "Run docker exec -it <container> bash."
   (interactive)
-  (let ((name-or-id (thing-at-point 'word)))
+  (let ((name-or-id (thing-at-point 'symbol)))
     (message name-or-id)
     (async-shell-command
      (concat "docker exec -it " name-or-id " bash -l")
