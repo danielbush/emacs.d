@@ -14,10 +14,13 @@
 
 (defun me/this-dir ()
   (interactive)
-  (let* ((filename (file-name-directory (buffer-file-name))))
-    (kill-new filename)
-    (message filename)
-    filename ))
+  (let* ((filename default-directory)
+     ;; (file-name-directory (buffer-file-name))
+         )
+     (kill-new filename)
+     (message filename)
+     filename )
+  )
 
 (defun me/this-file ()
   "Print path of current file or directory and put in kill ring."
