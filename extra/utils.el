@@ -14,10 +14,13 @@
 
 (defun me/this-dir ()
   (interactive)
-  (let* ((filename (file-name-directory (buffer-file-name))))
-    (kill-new filename)
-    (message filename)
-    filename ))
+  (let* ((filename default-directory)
+     ;; (file-name-directory (buffer-file-name))
+         )
+     (kill-new filename)
+     (message filename)
+     filename )
+  )
 
 (defun me/this-file ()
   "Print path of current file or directory and put in kill ring."
@@ -49,23 +52,31 @@
          )
     (async-shell-command (format "TERM=dumb ./%s %s" script-name args) buffer-name))
   )
+(defun me/command-dired-this-file (args)
+  (interactive "sArgs for command: ")
+  (let* (
+         (script-name (thing-at-point 'filename))
+         (buffer-name (me/make-command-buffer-name script-name))
+         )
+    (async-shell-command (format "TERM=dumb ./%s %s" script-name args) buffer-name))
+  )
 
 
-(defvar me/command-helm-file-projectile-last "")
-(defun me/command-helm-file-projectile ()
+(defvar me/run-command-helm-file-projectile-last "")
+(defun me/run-command-helm-file-projectile ()
   (interactive)
   (if (projectile-project-root)
       (me/do-helm
-       :initial-input me/command-helm-file-projectile-last
+       :initial-input me/run-command-helm-file-projectile-last
        :action-fn (lambda (file-name)
                     (let* (
                            (args (read-from-minibuffer "Args: "))
                            ;; (script-name (file-name-nondirectory file-name))
                            (script-name file-name)
-                           (buffer-name (me/make-command-buffer-name script-name))
+                           (buffer-name (me/make-command-buffer-name (concat script-name " " args)))
                            (cmd (format "TERM=dumb cd %s && %s %s" (file-name-directory script-name) script-name args))
                            )
-                      (setq me/command-helm-file-projectile-last script-name)
+                      (setq me/run-command-helm-file-projectile-last script-name)
                       (message cmd)
                       (async-shell-command cmd buffer-name)
                       ))

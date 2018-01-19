@@ -7,6 +7,7 @@
 (defconst me/node/orig-exec-path exec-path)
 (defconst me/node/orig-PATH (getenv "PATH"))
 (defcustom me/node-versions '("6.9.4" "7.10.1" "8.8.1" "8.9.0") "List of node versions.")
+;; (defcustom me/node-versions '("8.1.3" "8.9.1") "List of node versions.")
 (defcustom me/nvm-home "/Users/daniel.bush/.nvm" "Path to .nvm.  ~/.nvm may not work." :group 'me/node)
 (defcustom me/yarn-redirect-toggle nil "Wether to always redirect generae me/yarn(/*) commands." :group 'me/node)
 
@@ -59,20 +60,36 @@
    :list-fn (lambda () me/node-versions))
   )
 
+(defun me/npm-root ()
+  (locate-dominating-file default-directory "node_modules")
+)
 
+
+(defun me/make-npm-command-buffer-name (command)
+  "Get project-root for use as name when running COMMAND..
+
+Works well if you also set 'async-shell-command' to replace existing
+buffer (to prevent buffer proliferation)."
+
+  (let* ((root (me/npm-root))
+         (buffer-name (if root (concat "*command " command " in " root "*")
+            (concat "*command* " command))))
+    buffer-name))
 
 (defun me/npm (command)
   "Run npm COMMAND and save to a unique buffer."
   (interactive "snpm: ")
-  (let* ((buffer-name (me/make-command-buffer-name (concat "npm " command))))
+  (let* ((buffer-name (me/make-npm-command-buffer-name (concat "npm " command))))
     (async-shell-command (concat "TERM=xterm " me/npm-cmd " " command) buffer-name)
     ;(me/tidy-up-after-finish buffer-name)
     ))
 
+
+
 (defun me/npm/publish-prerelease-domain (tag)
   "Run npm publish on a pre-release..."
   (interactive "sDid you set version in package.json [x.y.(z+1)-foo-bar-#issue.n]?  Tag [foo-bar-#issue]: ")
-  (let* ((buffer-name (me/make-command-buffer-name (concat "npm publish [prerelease]" tag))))
+  (let* ((buffer-name (me/make-npm-command-buffer-name (concat "npm publish [prerelease]" tag))))
     (async-shell-command
      (format "TERM=xterm %s publish --tag %s --access restricted"
              me/npm-cmd
@@ -95,7 +112,7 @@
 (defun me/npm/run (command)
   "Run npm run COMMAND and save to a unique buffer."
   (interactive "snpm run: ")
-  (let* ((buffer-name (me/make-command-buffer-name (concat "npm run " command))))
+  (let* ((buffer-name (me/make-npm-command-buffer-name (concat "npm run " command))))
     (async-shell-command (concat "TERM=xterm " me/npm-cmd " run " command) buffer-name)
     ;(message (concat "TERM=xterm " me/npm-cmd " run " command))
     ;(me/tidy-up-after-finish buffer-name)
@@ -104,7 +121,7 @@
 (defun me/npm/run/test ()
   "Run npm test and save to a unique buffer."
   (interactive)
-  (let* ((buffer-name (me/make-command-buffer-name "npm run test")))
+  (let* ((buffer-name (me/make-npm-command-buffer-name "npm run test")))
     (async-shell-command (format "TERM=xterm %s %s run test" me/node-cmd me/npm-cmd) buffer-name)
     ;(me/tidy-up-after-finish buffer-name)
     ))
@@ -113,9 +130,11 @@
   "Run yarn in projectile root.
 
 COMMAND is a shell command string."
-  (let* ((buffer-name (me/make-command-buffer-name
+  (let* ((buffer-name (me/make-npm-command-buffer-name
                        (format "yarn %s %s" (nth 0 (split-string command)) (nth 1 (split-string command)))))
-         (root (ignore-errors (projectile-project-root))) )
+         ;; (root (ignore-errors (projectile-project-root)))
+         (root (me/npm-root))
+         )
     (with-temp-buffer
       (if root
           (progn
@@ -233,6 +252,12 @@ Motivation: cleaning up escape chars after running npm run test and related."
    (lambda (output)
      (replace-regexp-in-string "\\[[0-9]+[GKJ]" "" output)))
   )
+
+(defun me/run-this-file ()
+  (interactive)
+  (let ((cmd (format "%s" (me/this-file))))
+    (async-shell-command  cmd (format "*%s*" cmd))
+    ))
 
 (defun me/shell-run-this-file ()
   (interactive)
