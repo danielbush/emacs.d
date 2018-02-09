@@ -61,7 +61,11 @@
   )
 
 (defun me/npm-root ()
-  (locate-dominating-file default-directory "node_modules")
+  (or
+   (locate-dominating-file default-directory "node_modules")
+   ;; If node_modules/ not checked in
+   (locate-dominating-file default-directory ".git")
+   )
 )
 
 
