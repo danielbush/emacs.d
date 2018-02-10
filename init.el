@@ -30,6 +30,7 @@
   (load (concat user-emacs-directory "me/extra/frames.el"))
   (load (concat user-emacs-directory "me/extra/ibuffer.el"))
   (load (concat user-emacs-directory "me/extra/aws.el"))
+  (load (concat user-emacs-directory "me/extra/git.el"))
 
   (me/setup-elscreen)
 
