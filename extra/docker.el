@@ -86,7 +86,7 @@
   (let ((name-or-id (thing-at-point 'word)))
     (message name-or-id)
     (async-shell-command
-     (concat "docker rm -f " name-or-id)
+     (concat "docker rm -vf " name-or-id)
      "* docker rm*"
      )))
 
