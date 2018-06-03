@@ -30,6 +30,7 @@
   (load (concat user-emacs-directory "me/extra/frames.el"))
   (load (concat user-emacs-directory "me/extra/ibuffer.el"))
   (load (concat user-emacs-directory "me/extra/aws.el"))
+  (load (concat user-emacs-directory "me/extra/git.el"))
 
   (me/setup-elscreen)
 
@@ -48,6 +49,10 @@
   (me/font-small)
   )
 
+(custom-set-variables
+ '(grep-find-command
+   "find . -type f ! -path '*/lib/*' ! -path './.git/*' ! -path './.venv/*' ! -path '*/node_modules/*'  ! -path '*/serve/*' ! -path '*/coverage/*' -exec grep  -nH -i -e {} +")
+)
 
 (provide 'me/init)
 ;;; init ends here
