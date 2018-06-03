@@ -49,6 +49,10 @@
   (me/font-small)
   )
 
+(custom-set-variables
+ '(grep-find-command
+   "find . -type f ! -path '*/lib/*' ! -path './.git/*' ! -path './.venv/*' ! -path '*/node_modules/*'  ! -path '*/serve/*' ! -path '*/coverage/*' -exec grep  -nH -i -e {} +")
+)
 
 (provide 'me/init)
 ;;; init ends here
