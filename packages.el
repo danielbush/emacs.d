@@ -42,6 +42,7 @@
 
         js2-mode
         rjsx-mode
+        graphql-mode
         nvm
         web-mode
         flow-mode
