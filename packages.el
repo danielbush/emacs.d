@@ -11,6 +11,8 @@
         helm-projectile
         helm-swoop
         helm-ls-git
+        swiper
+        swiper-helm
 
         switch-window
         avy
@@ -27,6 +29,8 @@
         editorconfig
         wgrep
         wgrep-helm
+        all
+        evil
 
         zenburn-theme
         monokai-theme
