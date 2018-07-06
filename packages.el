@@ -18,10 +18,10 @@
         avy
         ace-window
         window-numbering
-        framemove
+        ;; framemove
 
         elscreen
-        elscreen-persist
+        ;; elscreen-persist
 
         magit
         flycheck
@@ -42,14 +42,14 @@
         yaml-mode
         hcl-mode
         json-mode
-        tidy
+        ;; tidy
 
         js2-mode
         rjsx-mode
         graphql-mode
         nvm
         web-mode
-        flow-mode
+        ;; flow-mode
         flow-minor-mode
         flycheck-flow
         company-flow
@@ -73,7 +73,7 @@
 
         auto-complete
         ac-helm
-        ac-dabbrev
+        ;; ac-dabbrev
         ))
 
 (package-initialize)
