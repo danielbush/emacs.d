@@ -41,7 +41,7 @@
 (defun me/node/set-path ()
   (interactive)
   (setenv "PATH" (format "%s:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin" me/node-path))
-  (setq exec-path (append '(me/node-path) exec-path))
+  (setq exec-path (append `(,me/node-path) exec-path))
   )
 
 (defun me/select-node-version ()
