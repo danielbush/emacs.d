@@ -1,6 +1,7 @@
 ;;; package --- some node cli utilities
 ;;; Commentary:
 ;;; Code:
+(require 's)
 (require 'projectile)
 (require 'me/utils (concat default-directory "utils.el"))
 
@@ -282,7 +283,7 @@ Motivation: cleaning up escape chars after running npm run test and related."
     (with-temp-buffer
       (if root
           (progn
-            (async-shell-command (format "cd %s && %s -r babel-register %s" root me/node-cmd filename)))
+            (async-shell-command (format "cd %s && %s -r @babel/register %s" root me/node-cmd filename)))
         (message "Can't find project root.") ))
     )
   )
@@ -344,6 +345,31 @@ NODE_MODULES_PATH example: node_modules/eslint/bin/eslint.js."
   (view-file-other-window "/tmp/yarn-with-redirect.log")
   (turn-on-auto-revert-tail-mode)
   )
+
+(defcustom me/auto-lint t "Auto lint.")
+
+(defun me/eslint-fix-file ()
+  (interactive)
+  (let* ((dir (locate-dominating-file default-directory "node_modules"))
+         (eslint (concat dir "node_modules/.bin/eslint --fix " (buffer-file-name)))
+         ;; (prettier (concat dir "node_modules/.bin/prettier --write --config " dir "package.json " (buffer-file-name)))
+         )
+    ;; (shell-command (concat eslint " || true"))
+    (shell-command (concat eslint " 2 >&1 1>/dev/null"))
+    (message (concat "AUTO LINTED AFTER SAVE: " eslint))
+    (revert-buffer t t)
+    ))
+
+(defun me/eslint-fix-file-and-revert ()
+  (if (and me/auto-lint (s-suffix? ".js" (buffer-file-name)))
+      (progn
+        (me/eslint-fix-file)
+        ))
+  )
+
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (add-hook 'after-save-hook #'me/eslint-fix-file-and-revert)))
 
 (provide 'me/node)
 ;;; node.el ends here
