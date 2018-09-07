@@ -26,6 +26,7 @@
 
         magit
         flycheck
+        prettier-js ;; npm i -g prettier; M-x customize-option prettier-js-args
         helm-flycheck
         editorconfig
         wgrep
