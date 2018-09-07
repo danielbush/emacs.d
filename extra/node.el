@@ -1,12 +1,14 @@
 ;;; package --- some node cli utilities
 ;;; Commentary:
 ;;; Code:
+(require 's)
 (require 'projectile)
 (require 'me/utils (concat default-directory "utils.el"))
 
 (defconst me/node/orig-exec-path exec-path)
 (defconst me/node/orig-PATH (getenv "PATH"))
-(defcustom me/node-versions '("8.1.3" "8.9.1") "List of node versions.")
+(defcustom me/node-versions '("6.9.4" "7.10.1" "8.8.1" "8.9.0") "List of node versions.")
+;; (defcustom me/node-versions '("8.1.3" "8.9.1") "List of node versions.")
 (defcustom me/nvm-home "/Users/daniel.bush/.nvm" "Path to .nvm.  ~/.nvm may not work." :group 'me/node)
 (defcustom me/yarn-redirect-toggle nil "Wether to always redirect generae me/yarn(/*) commands." :group 'me/node)
 
@@ -60,7 +62,11 @@
   )
 
 (defun me/npm-root ()
-  (locate-dominating-file default-directory "node_modules")
+  (or
+   (locate-dominating-file default-directory "node_modules")
+   ;; If node_modules/ not checked in
+   (locate-dominating-file default-directory ".git")
+   )
 )
 
 
@@ -92,6 +98,18 @@ buffer (to prevent buffer proliferation)."
     (async-shell-command
      (format "TERM=xterm %s publish --tag %s --access restricted"
              me/npm-cmd
+             tag)
+     buffer-name)
+    ))
+
+; This one gives errors, I uses npm version normally.
+(defun me/yarn/publish-prerelease-domain (tag)
+  "Run yarn publish on a pre-release..."
+  (interactive "sDid you set version in package.json [x.y.(z+1)-foo-bar-#issue.n]?  Tag [foo-bar-#issue]: ")
+  (let* ((buffer-name (me/make-command-buffer-name (concat "npm publish [prerelease]" tag))))
+    (async-shell-command
+     (format "TERM=xterm %s publish --tag %s --access restricted"
+             "yarn"
              tag)
      buffer-name)
     ))
@@ -136,7 +154,7 @@ COMMAND is a shell command string."
 
 (defun me/yarn-install-with-redirect ()
   (interactive)
-  (me/projectile-run-yarn "install >> /tmp/yarn.log 2>&1")
+  (me/projectile-run-yarn "install --verbose >> /tmp/yarn.log 2>&1")
   (view-file-other-window "/tmp/yarn.log")
   (turn-on-auto-revert-tail-mode)
   )
@@ -265,7 +283,7 @@ Motivation: cleaning up escape chars after running npm run test and related."
     (with-temp-buffer
       (if root
           (progn
-            (async-shell-command (format "cd %s && %s -r babel-register %s" root me/node-cmd filename)))
+            (async-shell-command (format "cd %s && %s -r @babel/register %s" root me/node-cmd filename)))
         (message "Can't find project root.") ))
     )
   )
@@ -327,6 +345,31 @@ NODE_MODULES_PATH example: node_modules/eslint/bin/eslint.js."
   (view-file-other-window "/tmp/yarn-with-redirect.log")
   (turn-on-auto-revert-tail-mode)
   )
+
+(defcustom me/auto-lint t "Auto lint.")
+
+(defun me/eslint-fix-file ()
+  (interactive)
+  (let* ((dir (locate-dominating-file default-directory "node_modules"))
+         (eslint (concat dir "node_modules/.bin/eslint --fix " (buffer-file-name)))
+         ;; (prettier (concat dir "node_modules/.bin/prettier --write --config " dir "package.json " (buffer-file-name)))
+         )
+    ;; (shell-command (concat eslint " || true"))
+    (shell-command (concat eslint " 2 >&1 1>/dev/null"))
+    (message (concat "AUTO LINTED AFTER SAVE: " eslint))
+    (revert-buffer t t)
+    ))
+
+(defun me/eslint-fix-file-and-revert ()
+  (if (and me/auto-lint (s-suffix? ".js" (buffer-file-name)))
+      (progn
+        (me/eslint-fix-file)
+        ))
+  )
+
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (add-hook 'after-save-hook #'me/eslint-fix-file-and-revert)))
 
 (provide 'me/node)
 ;;; node.el ends here

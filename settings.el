@@ -97,13 +97,23 @@ or cascaded."
   "Fonts for mac os x."
   (interactive)
   (progn
-    (defun me/font-x-small () (interactive) (set-face-attribute 'default nil :font "Menlo 9" ))
-    (defun me/font-small () (interactive) (set-face-attribute 'default nil :font "Menlo 10" ))
-    (defun me/font-med () (interactive) (set-face-attribute 'default nil :font "Menlo 11" ))
-    (defun me/font-medium () (interactive) (set-face-attribute 'default nil :font "Menlo 12" ))
-    (defun me/font-large () (interactive) (set-face-attribute 'default nil :font "Menlo 14" ))
-    (defun me/font-xlarge () (interactive) (set-face-attribute 'default nil :font "Menlo 16" ))
+    ;; (defun me/font-x-small () (interactive) (set-face-attribute 'default nil :font "Menlo 9" ))
+    ;; (defun me/font-small () (interactive) (set-face-attribute 'default nil :font "Menlo 10" ))
+    ;; (defun me/font-med () (interactive) (set-face-attribute 'default nil :font "Menlo 11" ))
+    ;; (defun me/font-medium () (interactive) (set-face-attribute 'default nil :font "Menlo 12" ))
+    ;; (defun me/font-large () (interactive) (set-face-attribute 'default nil :font "Menlo 14" ))
+    ;; (defun me/font-xlarge () (interactive) (set-face-attribute 'default nil :font "Menlo 16" ))
+
+
+    ;; Based on set-font-frame
+    (defun me/font-xsmall () (interactive) (set-frame-font "-*-Menlo-normal-normal-normal-*-10-*-*-*-m-0-iso10646-1" t t) )
+    (defun me/font-small () (interactive) (set-frame-font "-*-Menlo-normal-normal-normal-*-11-*-*-*-m-0-iso10646-1" t t) )
+    (defun me/font-medium () (interactive) (set-frame-font "-*-Menlo-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1" t t) )
+    (defun me/font-med () (interactive) (set-frame-font "-*-Menlo-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1" t t) )
+    (defun me/font-large () (interactive) (set-frame-font "-*-Menlo-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1" t t) )
+    (defun me/font-xlarge () (interactive) (set-frame-font "-*-Menlo-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1" t t) )
     ))
+
 
 (require 'helm-projectile)
 (require 'helm-ls-git)

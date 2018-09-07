@@ -3,6 +3,7 @@
 (setq me/packages
       '(
 
+        s ;https://stackoverflow.com/questions/22403751/check-if-a-string-ends-with-a-suffix-in-emacs-lisp
         yasnippet
 
         helm
