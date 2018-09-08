@@ -371,5 +371,13 @@ NODE_MODULES_PATH example: node_modules/eslint/bin/eslint.js."
           (lambda ()
             (add-hook 'after-save-hook #'me/eslint-fix-file-and-revert)))
 
+;; --------------------------------------------------------------------------------
+;; Prettier - https://github.com/prettier/prettier-emacs
+(require 'prettier-js)
+(add-hook 'js2-mode-hook 'prettier-js-mode)
+(add-hook 'web-mode-hook 'prettier-js-mode)
+;; --------------------------------------------------------------------------------
+
+
 (provide 'me/node)
 ;;; node.el ends here
