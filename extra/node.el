@@ -346,7 +346,8 @@ NODE_MODULES_PATH example: node_modules/eslint/bin/eslint.js."
   (turn-on-auto-revert-tail-mode)
   )
 
-(defcustom me/auto-lint t "Auto lint.")
+(defcustom me/auto-lint nil "Auto lint.")
+(defcustom me/use-prettier-js2-hook t "Whether prettier will load when js2-mode is loaded.  M-x rjsx-mode after changing this setting.")
 
 (defun me/eslint-fix-file ()
   (interactive)
@@ -371,11 +372,16 @@ NODE_MODULES_PATH example: node_modules/eslint/bin/eslint.js."
           (lambda ()
             (add-hook 'after-save-hook #'me/eslint-fix-file-and-revert)))
 
+(defun me/eslint-prettier-toggle-js2-mode ()
+  (if me/use-prettier-js2-hook (prettier-js-mode) ))
+
 ;; --------------------------------------------------------------------------------
 ;; Prettier - https://github.com/prettier/prettier-emacs
 (require 'prettier-js)
-(add-hook 'js2-mode-hook 'prettier-js-mode)
-(add-hook 'web-mode-hook 'prettier-js-mode)
+;; (add-hook 'js2-mode-hook 'prettier-js-mode)
+;; (add-hook 'web-mode-hook 'prettier-js-mode)
+(add-hook 'js2-mode-hook 'me/eslint-prettier-toggle-js2-mode)
+(add-hook 'web-mode-hook 'me/eslint-prettier-toggle-js2-mode)
 ;; --------------------------------------------------------------------------------
 
 
