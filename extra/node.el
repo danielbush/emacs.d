@@ -382,6 +382,9 @@ NODE_MODULES_PATH example: node_modules/eslint/bin/eslint.js."
 ;; (add-hook 'web-mode-hook 'prettier-js-mode)
 (add-hook 'js2-mode-hook 'me/eslint-prettier-toggle-js2-mode)
 (add-hook 'web-mode-hook 'me/eslint-prettier-toggle-js2-mode)
+(add-hook 'markdown-mode-hook 'me/eslint-prettier-toggle-js2-mode)
+(add-hook 'scss-mode-hook 'me/eslint-prettier-toggle-js2-mode)
+(add-hook 'css-mode-hook 'me/eslint-prettier-toggle-js2-mode)
 ;; --------------------------------------------------------------------------------
 
 
