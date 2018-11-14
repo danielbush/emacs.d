@@ -346,8 +346,10 @@ NODE_MODULES_PATH example: node_modules/eslint/bin/eslint.js."
   (turn-on-auto-revert-tail-mode)
   )
 
-(defcustom me/auto-lint nil "Auto lint.")
-(defcustom me/use-prettier-js2-hook t "Whether prettier will load when js2-mode is loaded.  M-x rjsx-mode after changing this setting.")
+(defgroup me/lint nil "My lint settings")
+(defcustom me/auto-lint nil "Auto lint - a home-rolled attempt - probably should not use." :group 'me/lint)
+(defcustom me/use-prettier-js2-hook nil "Whether prettier-js mode will load when js2-mode is loaded.  M-x rjsx-mode after changing this setting." :group 'me/lint)
+(defcustom me/use-eslintd-fix-js2-hook t "Whether eslintd-fix mode will load when js2-mode is loaded." :group 'me/lint)
 
 (defun me/eslint-fix-file ()
   (interactive)
@@ -375,16 +377,23 @@ NODE_MODULES_PATH example: node_modules/eslint/bin/eslint.js."
 (defun me/eslint-prettier-toggle-js2-mode ()
   (if me/use-prettier-js2-hook (prettier-js-mode) ))
 
+(defun me/eslintd-fix-toggle-js2-mode ()
+  (if me/use-eslintd-fix-js2-hook (eslintd-fix-mode) ))
+
 ;; --------------------------------------------------------------------------------
 ;; Prettier - https://github.com/prettier/prettier-emacs
 (require 'prettier-js)
 ;; (add-hook 'js2-mode-hook 'prettier-js-mode)
 ;; (add-hook 'web-mode-hook 'prettier-js-mode)
 (add-hook 'js2-mode-hook 'me/eslint-prettier-toggle-js2-mode)
+(add-hook 'js2-mode-hook 'me/eslintd-fix-toggle-js2-mode)
 (add-hook 'web-mode-hook 'me/eslint-prettier-toggle-js2-mode)
 (add-hook 'markdown-mode-hook 'me/eslint-prettier-toggle-js2-mode)
 (add-hook 'scss-mode-hook 'me/eslint-prettier-toggle-js2-mode)
 (add-hook 'css-mode-hook 'me/eslint-prettier-toggle-js2-mode)
+
+;; (add-hook 'js2-mode-hook 'eslintd-fix-mode)
+
 ;; --------------------------------------------------------------------------------
 
 

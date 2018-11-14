@@ -25,8 +25,20 @@
         ;; elscreen-persist
 
         magit
+
+
         flycheck
+
         prettier-js ;; npm i -g prettier; M-x customize-option prettier-js-args
+
+        ;; To do: eslint --fix in emacs.
+        ;; https://github.com/aaronjensen/eslintd-fix (required: npm i -g eslint_d)
+        ;; (Uses: https://github.com/mantoni/eslint_d.js/ .)
+        ;; Other options:
+        ;; https://github.com/codesuki/eslint-fix/ - looks simpler probably slower
+        ;; https://gist.github.com/ustun/73321bfcb01a8657e5b8 - a gist that does similar
+        eslintd-fix
+
         helm-flycheck
         editorconfig
         wgrep
