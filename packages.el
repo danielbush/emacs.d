@@ -37,7 +37,8 @@
         ;; Other options:
         ;; https://github.com/codesuki/eslint-fix/ - looks simpler probably slower
         ;; https://gist.github.com/ustun/73321bfcb01a8657e5b8 - a gist that does similar
-        eslintd-fix
+        eslintd-fix ;; seems to corrupt fe-pa-listing-details files
+        eslint-fix ;; TIP: set command to use eslint_d instead of eslint to make it fast - not sure if we need to start eslint_d up first, it's possible eslintd-fix starts eslint_d with all the correct settings, but eslintd-fix seems to corrupt my files atm.
 
         helm-flycheck
         editorconfig

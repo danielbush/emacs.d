@@ -351,10 +351,21 @@ NODE_MODULES_PATH example: node_modules/eslint/bin/eslint.js."
 (defcustom me/use-prettier-js2-hook nil "Whether prettier-js mode will load when js2-mode is loaded.  M-x rjsx-mode after changing this setting." :group 'me/lint)
 (defcustom me/use-eslintd-fix-js2-hook t "Whether eslintd-fix mode will load when js2-mode is loaded." :group 'me/lint)
 
+(defun me/load-codesuki-eslint-fix ()
+  "Use this with command customized to eslint_d (if eslintd-fix mode is playing up.)"
+  (interactive)
+  (eval-after-load 'js-mode
+    '(add-hook 'js-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
+
+  (eval-after-load 'js2-mode
+    '(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
+  )
+
 (defun me/eslint-fix-file ()
   (interactive)
   (let* ((dir (locate-dominating-file default-directory "node_modules"))
-         (eslint (concat dir "node_modules/.bin/eslint --fix " (buffer-file-name)))
+         ;; (eslint (concat dir "node_modules/.bin/eslint --fix " (buffer-file-name)))
+         (eslint (concat dir "eslintd --fix " (buffer-file-name)))
          ;; (prettier (concat dir "node_modules/.bin/prettier --write --config " dir "package.json " (buffer-file-name)))
          )
     ;; (shell-command (concat eslint " || true"))
