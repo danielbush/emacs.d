@@ -35,7 +35,7 @@
 
 ;; (defvar me/yarn-cmd "~/.nvm/versions/node/v7.8.0/bin/yarn")
 ;; (defvar me/yarn-cmd "/home/danb/.nvm/versions/node/v8.1.3/bin/yarn")
-(defvar me/yarn-cmd "npm")
+(defvar me/yarn-cmd "yarn")
 
 (defvar me/node-path "/usr/local/bin")
 
@@ -352,13 +352,19 @@ NODE_MODULES_PATH example: node_modules/eslint/bin/eslint.js."
 (defcustom me/use-eslintd-fix-js2-hook t "Whether eslintd-fix mode will load when js2-mode is loaded." :group 'me/lint)
 
 (defun me/load-codesuki-eslint-fix ()
-  "Use this with command customized to eslint_d (if eslintd-fix mode is playing up.)"
+  "Use eslint-fix (tip: customize to use eslint_d) (eslintd-fix mode is playing up.)"
   (interactive)
   (eval-after-load 'js-mode
     '(add-hook 'js-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
 
   (eval-after-load 'js2-mode
     '(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
+  )
+
+(defun me/kill-eslintd ()
+  "Kill eslint_d to force it to reload in case it's using incorrect settings between projects."
+  (interactive)
+  (shell-command "pkill -f eslint_d")
   )
 
 (defun me/eslint-fix-file ()
