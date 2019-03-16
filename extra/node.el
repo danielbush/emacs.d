@@ -36,7 +36,7 @@
 
 ;; (defvar me/yarn-cmd "~/.nvm/versions/node/v7.8.0/bin/yarn")
 ;; (defvar me/yarn-cmd "/home/danb/.nvm/versions/node/v8.1.3/bin/yarn")
-(defvar me/yarn-cmd "npm")
+(defvar me/yarn-cmd "yarn")
 
 (defvar me/node-path "/usr/local/bin")
 
@@ -347,13 +347,32 @@ NODE_MODULES_PATH example: node_modules/eslint/bin/eslint.js."
   (turn-on-auto-revert-tail-mode)
   )
 
-(defcustom me/auto-lint nil "Auto lint.")
-(defcustom me/use-prettier-js2-hook t "Whether prettier will load when js2-mode is loaded.  M-x rjsx-mode after changing this setting.")
+(defgroup me/lint nil "My lint settings")
+(defcustom me/auto-lint nil "Auto lint - a home-rolled attempt - probably should not use." :group 'me/lint)
+(defcustom me/use-prettier-js2-hook nil "Whether prettier-js mode will load when js2-mode is loaded.  M-x rjsx-mode after changing this setting." :group 'me/lint)
+(defcustom me/use-eslintd-fix-js2-hook t "Whether eslintd-fix mode will load when js2-mode is loaded." :group 'me/lint)
+
+(defun me/load-codesuki-eslint-fix ()
+  "Use eslint-fix (tip: customize to use eslint_d) (eslintd-fix mode is playing up.)"
+  (interactive)
+  (eval-after-load 'js-mode
+    '(add-hook 'js-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
+
+  (eval-after-load 'js2-mode
+    '(add-hook 'js2-mode-hook (lambda () (add-hook 'after-save-hook 'eslint-fix nil t))))
+  )
+
+(defun me/kill-eslintd ()
+  "Kill eslint_d to force it to reload in case it's using incorrect settings between projects."
+  (interactive)
+  (shell-command "pkill -f eslint_d")
+  )
 
 (defun me/eslint-fix-file ()
   (interactive)
   (let* ((dir (locate-dominating-file default-directory "node_modules"))
-         (eslint (concat dir "node_modules/.bin/eslint --fix " (buffer-file-name)))
+         ;; (eslint (concat dir "node_modules/.bin/eslint --fix " (buffer-file-name)))
+         (eslint (concat dir "eslintd --fix " (buffer-file-name)))
          ;; (prettier (concat dir "node_modules/.bin/prettier --write --config " dir "package.json " (buffer-file-name)))
          )
     ;; (shell-command (concat eslint " || true"))
@@ -376,16 +395,23 @@ NODE_MODULES_PATH example: node_modules/eslint/bin/eslint.js."
 (defun me/eslint-prettier-toggle-js2-mode ()
   (if me/use-prettier-js2-hook (prettier-js-mode) ))
 
+(defun me/eslintd-fix-toggle-js2-mode ()
+  (if me/use-eslintd-fix-js2-hook (eslintd-fix-mode) ))
+
 ;; --------------------------------------------------------------------------------
 ;; Prettier - https://github.com/prettier/prettier-emacs
 (require 'prettier-js)
 ;; (add-hook 'js2-mode-hook 'prettier-js-mode)
 ;; (add-hook 'web-mode-hook 'prettier-js-mode)
 (add-hook 'js2-mode-hook 'me/eslint-prettier-toggle-js2-mode)
+(add-hook 'js2-mode-hook 'me/eslintd-fix-toggle-js2-mode)
 (add-hook 'web-mode-hook 'me/eslint-prettier-toggle-js2-mode)
 (add-hook 'markdown-mode-hook 'me/eslint-prettier-toggle-js2-mode)
 (add-hook 'scss-mode-hook 'me/eslint-prettier-toggle-js2-mode)
 (add-hook 'css-mode-hook 'me/eslint-prettier-toggle-js2-mode)
+
+;; (add-hook 'js2-mode-hook 'eslintd-fix-mode)
+
 ;; --------------------------------------------------------------------------------
 
 

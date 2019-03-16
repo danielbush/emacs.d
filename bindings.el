@@ -98,6 +98,9 @@
 (global-set-key (kbd "C-x h")   'previous-buffer)
 (global-set-key (kbd "C-x l")   'next-buffer)
 
+
 ; mac os x pain...
 (global-set-key (kbd "C-c C-b") 'other-frame)
 (global-set-key (kbd "C-x C-n") 'other-frame)
+
+(global-set-key (kbd "M-r")   'helm-recentf)
