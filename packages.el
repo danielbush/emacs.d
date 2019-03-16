@@ -51,6 +51,7 @@
         graphql-mode
         nvm
         web-mode
+        pug-mode
         ;; flow-mode
         flow-minor-mode
         flycheck-flow
