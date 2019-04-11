@@ -14,6 +14,8 @@
         helm-ls-git
         swiper
         swiper-helm
+        ; https://www.emacswiki.org/emacs/JumpToDefinition
+        dumb-jump ; https://github.com/jacktasia/dumb-jump
 
         switch-window
         avy
