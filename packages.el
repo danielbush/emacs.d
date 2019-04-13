@@ -3,10 +3,13 @@
 (setq me/packages
       '(
 
-        zenburn-theme
-        monokai-theme
-        dracula-theme
+        ;; sanityinc-tomorrow-night is the winner!!
         color-theme-sanityinc-tomorrow  ;; https://pawelbx.github.io/emacs-theme-gallery/
+        darkburn-theme ;; better zenburn
+        clues-theme
+        zenburn-theme
+        ;; monokai-theme
+        ;; dracula-theme
 
         ;; https://stackoverflow.com/questions/22403751/check-if-a-string-ends-with-a-suffix-in-emacs-lisp
         s

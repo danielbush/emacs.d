@@ -83,14 +83,15 @@ or cascaded."
 (me/bg-black)
 
 (progn
-  (defun me/font-small () (interactive) (set-face-attribute 'default nil :font "Monospace 12" ))
-  (defun me/font-med   () (interactive) (set-face-attribute 'default nil :font "Monospace 13" ))
+  (defun me/font-xsmall () (interactive) (set-face-attribute 'default nil :font "Monospace 10" ))
+  (defun me/font-small () (interactive) (set-face-attribute 'default nil :font "Monospace 11" ))
+  (defun me/font-med   () (interactive) (set-face-attribute 'default nil :font "Monospace 12" ))
   (defun me/font-large () (interactive) (set-face-attribute 'default nil :font "Monospace 13" ))
   (defun me/font-large () (interactive) (set-face-attribute 'default nil :font "Monospace 14" ))
   (defun me/font-xlarge () (interactive) (set-face-attribute 'default nil :font "Monospace 16" ))
-  (defun me/font-small () (interactive) (set-face-attribute 'default nil :font "Liberation Mono 10" ))
-  (defun me/font-medium () (interactive) (set-face-attribute 'default nil :font "Liberation Mono 12" ))
-  (defun me/font-large () (interactive) (set-face-attribute 'default nil :font "Liberation Mono 13" ))
+  ;; (defun me/font-small () (interactive) (set-face-attribute 'default nil :font "Liberation Mono 10" ))
+  ;; (defun me/font-medium () (interactive) (set-face-attribute 'default nil :font "Liberation Mono 12" ))
+  ;; (defun me/font-large () (interactive) (set-face-attribute 'default nil :font "Liberation Mono 13" ))
   )
 
 (defun me/mac-fonts ()
