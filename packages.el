@@ -3,33 +3,106 @@
 (setq me/packages
       '(
 
-        s ;https://stackoverflow.com/questions/22403751/check-if-a-string-ends-with-a-suffix-in-emacs-lisp
-        yasnippet
+        zenburn-theme
+        monokai-theme
+        dracula-theme
+        color-theme-sanityinc-tomorrow  ;; https://pawelbx.github.io/emacs-theme-gallery/
+
+        ;; https://stackoverflow.com/questions/22403751/check-if-a-string-ends-with-a-suffix-in-emacs-lisp
+        s
+
+
+        ;; ------------------------------------------------------------
+        ;; Core
 
         helm
         helm-ag
         projectile
         helm-projectile
-        helm-swoop
-        helm-ls-git
-        swiper
-        swiper-helm
-        ; https://www.emacswiki.org/emacs/JumpToDefinition
-        dumb-jump ; https://github.com/jacktasia/dumb-jump
-
+        helm-swoop ;; oocur
+        avy ;; jump to lines
+        ace-window ;; swap windows
         switch-window
-        avy
-        ace-window
-        window-numbering
+        window-numbering ;; switch window M-1,2...
         ;; framemove
-
         elscreen
         ;; elscreen-persist
+        golden-ratio
+
+        ;; Remove?
+        swiper
+        swiper-helm
+
+        ;; ------------------------------------------------------------
+        ;; Git
 
         magit
+        helm-ls-git
 
+        ;; ------------------------------------------------------------
+        ;; Linting
 
         flycheck
+        helm-flycheck
+        editorconfig
+        
+        ;; ------------------------------------------------------------
+        ;; Editing
+
+        all ;; edit all lines, alternative to occur + 'e'
+        wgrep
+        wgrep-helm
+        yasnippet
+        evil ;; alternative to viper
+
+        ;; ------------------------------------------------------------
+        ;; Tagging, jumping, cross referencing
+
+        ;; https://www.emacswiki.org/emacs/JumpToDefinition
+        ;; https://github.com/jacktasia/dumb-jump
+        dumb-jump
+
+        ;; ------------------------------------------------------------
+        ;; Autocomplete
+
+        auto-complete
+        ac-helm
+        ;; ac-dabbrev
+
+        ;; ------------------------------------------------------------
+        ;; Useful modes
+
+        paredit
+        yaml-mode
+        hcl-mode
+        json-mode
+        ;; tidy
+        markdown-mode
+        web-mode
+        graphql-mode
+        docker
+        dockerfile-mode
+        docker-tramp
+
+        ;; ------------------------------------------------------------
+        ;; js
+        ;;
+        ;; 13-Apr-19
+        ;; - https://emacs.cafe/emacs/javascript/setup/2017/05/09/emacs-setup-javascript-2.html
+        ;;   - tern (company, company-tern backend), xref-js2, tide
+        ;;   - indium - browser + node debugging
+
+        js2-mode
+        rjsx-mode
+        nvm
+        pug-mode
+        ;; flow-mode
+        flow-minor-mode
+        flycheck-flow
+        company-flow
+
+        ;; ------------------------------------------------------------
+        ;; js / linting
 
         prettier-js ;; npm i -g prettier; M-x customize-option prettier-js-args
 
@@ -39,38 +112,19 @@
         ;; Other options:
         ;; https://github.com/codesuki/eslint-fix/ - looks simpler probably slower
         ;; https://gist.github.com/ustun/73321bfcb01a8657e5b8 - a gist that does similar
+
         eslintd-fix ;; seems to corrupt fe-pa-listing-details files
-        eslint-fix ;; TIP: set command to use eslint_d instead of eslint to make it fast - not sure if we need to start eslint_d up first, it's possible eslintd-fix starts eslint_d with all the correct settings, but eslintd-fix seems to corrupt my files atm.
 
-        helm-flycheck
-        editorconfig
-        wgrep
-        wgrep-helm
-        all
-        evil
+        ;; TIP: set command to use eslint_d instead of eslint to make
+        ;; it fast - not sure if we need to start eslint_d up first,
+        ;; it's possible eslintd-fix starts eslint_d with all the
+        ;; correct settings, but eslintd-fix seems to corrupt my files
+        ;; atm.
+        eslint-fix
 
-        zenburn-theme
-        monokai-theme
-        dracula-theme
-        golden-ratio
-        markdown-mode
 
-        paredit
-        yaml-mode
-        hcl-mode
-        json-mode
-        ;; tidy
-
-        js2-mode
-        rjsx-mode
-        graphql-mode
-        nvm
-        web-mode
-        pug-mode
-        ;; flow-mode
-        flow-minor-mode
-        flycheck-flow
-        company-flow
+        ;; ------------------------------------------------------------
+        ;; Other languages
 
         groovy-mode
 
@@ -85,13 +139,7 @@
         csharp-mode
         haskell-mode
 
-        docker
-        dockerfile-mode
-        docker-tramp
 
-        auto-complete
-        ac-helm
-        ;; ac-dabbrev
         ))
 
 (package-initialize)
