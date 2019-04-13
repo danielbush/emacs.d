@@ -65,7 +65,10 @@
         ;; ------------------------------------------------------------
         ;; Autocomplete
 
-        auto-complete
+        ;; https://emacs.stackexchange.com/questions/712/what-are-the-differences-between-autocomplete-and-company-mode
+        company ;; probably favour company over auto-complete
+
+        auto-complete ;; ac-*
         ac-helm
         ;; ac-dabbrev
 
@@ -100,6 +103,7 @@
         flow-minor-mode
         flycheck-flow
         company-flow
+        company-tern ;; npm i -g tern
 
         ;; ------------------------------------------------------------
         ;; js / linting

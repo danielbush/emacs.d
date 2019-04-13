@@ -7,8 +7,8 @@
 
 (defconst me/node/orig-exec-path exec-path)
 (defconst me/node/orig-PATH (getenv "PATH"))
-;; (defcustom me/node-versions '("6.9.4" "7.10.1" "8.8.1" "8.9.0") "List of node versions.")
-(defcustom me/node-versions '("8.9.0" "10.15.02") "List of node versions.")
+(defcustom me/node-versions '("8.9.0" "10.15.0") "List of node versions." :group 'me/node)
+(defcustom me/default-node-version "10.15.0" "Default version when we start Emacs." :group 'me/node :type "string")
 ;; (defcustom me/node-versions '("8.1.3" "8.9.1") "List of node versions.")
 (defcustom me/nvm-home "/Users/daniel.bush/.nvm" "Path to .nvm.  ~/.nvm may not work." :group 'me/node)
 (defcustom me/yarn-redirect-toggle nil "Wether to always redirect generae me/yarn(/*) commands." :group 'me/node)
@@ -46,21 +46,34 @@
   (setq exec-path (append `(,me/node-path) exec-path))
   )
 
+(defun me/set-node-version (node-version)
+  (message node-version)
+  (let ((nvm-bin (format "%s/versions/node/v%s/bin" me/nvm-home node-version)))
+    (setq me/node-path (format "%s" nvm-bin))
+    (setq me/node-cmd (format "%s/node" nvm-bin))
+    (setq me/npm-cmd (format "%s/npm" nvm-bin))
+    (setq me/yarn-cmd (format "%s/yarn" nvm-bin))
+    (me/node/set-path)
+    )
+  )
+
 (defun me/select-node-version ()
   (interactive)
   (me/do-helm
-   :action-fn
-   (lambda (node-version)
-     (message node-version)
-     (let ((nvm-bin (format "%s/versions/node/v%s/bin" me/nvm-home node-version)))
-       (setq me/node-path (format "%s" nvm-bin))
-       (setq me/node-cmd (format "%s/node" nvm-bin))
-       (setq me/npm-cmd (format "%s/npm" nvm-bin))
-       (setq me/yarn-cmd (format "%s/yarn" nvm-bin))
-       (me/node/set-path)
-       ))
+   :action-fn 'me/set-node-version
+   ;; (lambda (node-version)
+   ;;   (message node-version)
+   ;;   (let ((nvm-bin (format "%s/versions/node/v%s/bin" me/nvm-home node-version)))
+   ;;     (setq me/node-path (format "%s" nvm-bin))
+   ;;     (setq me/node-cmd (format "%s/node" nvm-bin))
+   ;;     (setq me/npm-cmd (format "%s/npm" nvm-bin))
+   ;;     (setq me/yarn-cmd (format "%s/yarn" nvm-bin))
+   ;;     (me/node/set-path)
+   ;;     ))
    :list-fn (lambda () me/node-versions))
   )
+
+(me/set-node-version me/default-node-version)
 
 (defun me/npm-root ()
   (or
