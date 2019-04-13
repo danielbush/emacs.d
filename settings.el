@@ -80,7 +80,6 @@ or cascaded."
   (defun me/bg-red () (interactive) (set-background-color "#550000"))
   (defun me/bg-brown () (interactive) (set-background-color "#4f1800")))
 
-(me/bg-black)
 
 (progn
   (defun me/font-xsmall () (interactive) (set-face-attribute 'default nil :font "Monospace 10" ))

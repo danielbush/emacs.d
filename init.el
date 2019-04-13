@@ -34,6 +34,8 @@
   (load (concat user-emacs-directory "me/extra/git.el"))
 
   (me/setup-elscreen)
+  ;; (me/bg-black)
+  (me/font-small)
 
   (select-frame (make-frame))
   (me/setup-elscreen-alternative-for-domain)
