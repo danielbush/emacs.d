@@ -3,7 +3,13 @@
 (setq me/packages
       '(
 
-        ;; sanityinc-tomorrow-night is the winner!!
+        hemisu-theme
+        dakrone-theme
+        bubbleberry-theme
+        moe-theme
+        ample-theme
+        solarized-theme
+        spacemacs-theme
         color-theme-sanityinc-tomorrow  ;; https://pawelbx.github.io/emacs-theme-gallery/
         darkburn-theme ;; better zenburn
         clues-theme
