@@ -1,3 +1,5 @@
+;;; package --- me/tern
+;;; Commentary:
 ;; https://emacs.cafe/emacs/javascript/setup/2017/05/09/emacs-setup-javascript-2.html
 
 (require 'company)
@@ -10,6 +12,13 @@
                            (tern-mode)
                            (company-mode)))
                            
-;; Disable completion keybindings, as we use xref-js2 instead
-;; (define-key tern-mode-keymap (kbd "M-.") nil)
-;; (define-key tern-mode-keymap (kbd "M-,") nil)
+;; Disable completion keybindings.
+;; If tern loads in js2-mode, this will prevent it from overriding these.
+(define-key tern-mode-keymap (kbd "M-.") nil)
+(define-key tern-mode-keymap (kbd "M-,") nil)
+(define-key tern-mode-keymap (kbd "C-M-.") nil)
+
+(add-hook 'js2-mode-hook (lambda ()
+                           (define-key js2-mode-map (kbd "C-M-.") 'dumb-jump-go-other-window)
+                           (define-key js2-mode-map (kbd "M-.") 'dumb-jump-go)
+                           (define-key js2-mode-map (kbd "M-,") 'dumb-jump-back)))
