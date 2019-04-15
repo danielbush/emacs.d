@@ -70,6 +70,7 @@ or cascaded."
   (defun me/bg-blue () (interactive) (set-background-color "#003344"))
   (defun me/bg-black () (interactive) (set-background-color "black"))
   (defun me/bg-dark () (interactive) (set-background-color "gray15"))
+  (defun me/bg-dark () (interactive) (set-background-color "gray10"))
   (defun me/bg-mid () (interactive) (set-background-color "gray25"))
   (defun me/bg-green () (interactive) (set-background-color "green4"))
   (defun me/bg-green () (interactive) (set-background-color "#002200"))
