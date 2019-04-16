@@ -142,7 +142,8 @@ buffer (to prevent buffer proliferation)."
  )
 
 (defun me/projectile-find-grep (search)
-  (interactive "sSearch: ")
+  ;; (interactive "sSearch: ")
+  (interactive (list (read-string "Search: " (thing-at-point 'symbol))))
   (with-temp-buffer
     (cd (projectile-project-root))
     ;; (call-interactively 'find-grep)
