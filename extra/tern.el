@@ -18,12 +18,14 @@
 (define-key tern-mode-keymap (kbd "M-,") nil)
 (define-key tern-mode-keymap (kbd "C-M-.") nil)
 
-(add-hook 'js2-mode-hook (lambda ()
-                           (define-key js2-mode-map (kbd "C-M-.") 'dumb-jump-go-other-window)
-                           (define-key js2-mode-map (kbd "M-.") 'dumb-jump-go)
-                           (define-key js2-mode-map (kbd "M-,") 'dumb-jump-back)
-                           (hs-minor-mode 1)
-                           (define-key js2-mode-map (kbd "C-c C-f") 'hs-hide-level)
-                           (define-key js2-mode-map (kbd "C-c C-v") 'hs-show-all)
-                           (define-key js2-mode-map (kbd "C-c C-b") 'hs-show-block)
-                           ))
+(add-hook
+ 'js2-mode-hook
+ (lambda ()
+   (define-key js2-mode-map (kbd "C-M-.") 'dumb-jump-go-other-window)
+   (define-key js2-mode-map (kbd "M-.") 'dumb-jump-go)
+   (define-key js2-mode-map (kbd "M-,") 'dumb-jump-back)
+   (hs-minor-mode 1)
+   (define-key js2-mode-map (kbd "C-c C-f") 'hs-hide-level)
+   (define-key js2-mode-map (kbd "C-c C-v") 'hs-show-all)
+   (define-key js2-mode-map (kbd "C-c C-b") 'hs-show-block)
+   ))
