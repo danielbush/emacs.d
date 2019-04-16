@@ -141,13 +141,27 @@ buffer (to prevent buffer proliferation)."
  ;; "find . ! -name \"*~\" ! -name \"#*#\" -type f -print0 | xargs -0 -e grep -nH -e "
  )
 
-(defun me/projectile-find-grep ()
-  (interactive)
+(defun me/projectile-find-grep (search)
+  (interactive "sSearch: ")
   (with-temp-buffer
     (cd (projectile-project-root))
-    (call-interactively 'find-grep)
-    )
-  )
+    ;; (call-interactively 'find-grep)
+    (find-grep
+     (format
+      (concat
+       "find . -type f "
+       "! -path './lib/*' " ;; top-level
+       "! -path '*build/*' " ;; any level
+       "! -path '*serve/*' "
+       "! -path '*.git/*' "
+       "! -path '*.venv/*' "
+       "! -path '*node_modules/*' "
+       "! -path './coverage/*' "
+       "-exec grep  -nH -i -e '%s' {} +"
+       )
+      
+      search)
+     )))
 
 
 (provide 'me/utils)
