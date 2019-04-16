@@ -152,13 +152,15 @@ buffer (to prevent buffer proliferation)."
       (concat
        "find . -type f "
        "! -path './lib/*' " ;; top-level
+       "! -path './2br-*lib/*' "
        "! -path '*build/*' " ;; any level
        "! -path '*serve/*' "
        "! -path '*.git/*' "
        "! -path '*.venv/*' "
        "! -path '*node_modules/*' "
        "! -path './coverage/*' "
-       "-exec grep  -nH -i -e '%s' {} +"
+       ;; "-exec grep -nH -i -e '%s' {} +"
+       "-exec egrep -nH -e '%s' {} +"
        )
       
       search)
