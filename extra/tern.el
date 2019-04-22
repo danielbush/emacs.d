@@ -25,8 +25,9 @@
    (hs-minor-mode 1)
    (define-key js2-mode-map (kbd "C-c C-f") 'hs-hide-level)
    (define-key js2-mode-map (kbd "C-c C-v") 'hs-show-all)
-   (define-key js2-mode-map (kbd "C-c C-b") 'hs-show-block)
-   (define-key js2-mode-map (kbd "C-c C-h") 'hs-hide-block)
+   (define-key js2-mode-map (kbd "C-c C-b") 'hs-toggle-hiding)
+   ;; (define-key js2-mode-map (kbd "C-c C-b") 'hs-show-block)
+   ;; (define-key js2-mode-map (kbd "C-c C-h") 'hs-hide-block)
   )
 
 (add-hook
