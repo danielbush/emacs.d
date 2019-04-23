@@ -4,7 +4,7 @@
 
 (require 'company)
 (require 'company-tern)
-;; (require 'me/dump-jump "~/.emacs.d/me/extra/dumb-jump.el")
+;; (require 'me/dump-jump "~/.emacs.d/me/extra/dumb-jump")
 (load "/home/danb/.emacs.d/me/extra/dumb-jump")
 
 ;;; Code:
@@ -21,9 +21,12 @@
 (define-key tern-mode-keymap (kbd "C-M-.") nil)
 
 (defun me/js2-mode-hook()
-   (define-key js2-mode-map (kbd "C-M-.") 'dumb-jump-go-other-window)
-   (define-key js2-mode-map (kbd "M-.") 'dumb-jump-go)
+   ;; (define-key js2-mode-map (kbd "M-.") 'dumb-jump-go)
+   (define-key js2-mode-map (kbd "M-.") 'me/dumb-jump-go-prompt)
+   ;; (define-key js2-mode-map (kbd "C-M-.") 'dumb-jump-go-other-window)
+   (define-key js2-mode-map (kbd "C-M-.") 'me/dumb-jump-go-prompt-other-window)
    (define-key js2-mode-map (kbd "M-,") 'dumb-jump-back)
+
    (hs-minor-mode 1)
    (define-key js2-mode-map (kbd "C-c C-f") 'hs-hide-level)
    (define-key js2-mode-map (kbd "C-c C-v") 'hs-show-all)
