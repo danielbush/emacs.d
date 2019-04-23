@@ -171,12 +171,13 @@ buffer (to prevent buffer proliferation)."
   (me/-projectile-find-grep search)
 )
 
-(defun me/projectile-find-grep (search)
+(defun me/projectile-find-grep ()
   "Use C-c C-y to copy existing candidate into minibuffer if you want to modify it."
   (interactive)
   (let ((search (helm-comp-read
                  "Search: "
                  minibuffer-history
+                 :initial-input (thing-at-point 'symbol)
                  :buffer "*me/helm/projectile-find-grep*"
                  ;; :requires-pattern t
                  )))
@@ -189,6 +190,7 @@ buffer (to prevent buffer proliferation)."
   (let ((search (helm-comp-read
                  "Search: "
                  minibuffer-history
+                 :initial-input (thing-at-point 'symbol)
                  :buffer "*me/helm/projectile-find-grep*"
                  ;; :requires-pattern t
                  )))
