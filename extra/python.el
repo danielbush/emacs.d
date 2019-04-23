@@ -14,3 +14,5 @@
     'before-save-hook
     (lambda () (if me/prettify-python (elpy-format-code)))))
 
+(provide 'me/python)
+;;; python.el ends here

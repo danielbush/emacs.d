@@ -64,3 +64,7 @@
   )
 
 (me/fix-ibuffer-name-size)
+
+(provide 'me/ibuffer)
+;;; ibuffer.el ends here
+

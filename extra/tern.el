@@ -4,6 +4,8 @@
 
 (require 'company)
 (require 'company-tern)
+;; (require 'me/dump-jump "~/.emacs.d/me/extra/dumb-jump.el")
+(load "/home/danb/.emacs.d/me/extra/dumb-jump")
 
 ;;; Code:
 
@@ -32,3 +34,6 @@
 
 (add-hook
  'js2-mode-hook 'me/js2-mode-hook)
+
+(provide 'me/tern)
+;;; tern.el ends here

@@ -8,3 +8,6 @@
   (set-frame-name "2")
   (make-frame-command)
   (set-frame-name "3"))
+
+(provide 'me/frames)
+;;; frames.el ends here

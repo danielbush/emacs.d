@@ -3,6 +3,7 @@
 ;;; Code:
 
 (require 'projectile)
+(require 'thingatpt)
 
 ; https://www.emacswiki.org/emacs/ElispCookbook#toc6
 (defun me/chomp (str)

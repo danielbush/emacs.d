@@ -27,3 +27,6 @@
       (message "Could not find playbooks/ dir."))
     )
   )
+
+(provide 'me/ansible)
+;;; ansible.el ends here
