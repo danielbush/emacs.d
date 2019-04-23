@@ -5,7 +5,7 @@
 (require 'company)
 (require 'company-tern)
 ;; (require 'me/dump-jump "~/.emacs.d/me/extra/dumb-jump")
-(load "/home/danb/.emacs.d/me/extra/dumb-jump")
+(load "~/.emacs.d/me/extra/dumb-jump")
 
 ;;; Code:
 
