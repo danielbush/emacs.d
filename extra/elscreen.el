@@ -48,3 +48,6 @@
   (interactive)
   (elscreen-goto num) (message (elscreen-get-screen-nickname num))
   )
+
+(provide 'me/elsccreen)
+;;; elscreen.el ends here

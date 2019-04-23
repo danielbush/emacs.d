@@ -3,6 +3,7 @@
 ;;; Code:
 
 (require 'projectile)
+(require 'thingatpt)
 
 ; https://www.emacswiki.org/emacs/ElispCookbook#toc6
 (defun me/chomp (str)
@@ -141,9 +142,7 @@ buffer (to prevent buffer proliferation)."
  ;; "find . ! -name \"*~\" ! -name \"#*#\" -type f -print0 | xargs -0 -e grep -nH -e "
  )
 
-(defun me/projectile-find-grep (search)
-  ;; (interactive "sSearch: ")
-  (interactive (list (read-string "Search: " (thing-at-point 'symbol))))
+(defun me/-projectile-find-grep (search &optional ignore-case)
   (with-temp-buffer
     (cd (projectile-project-root))
     ;; (call-interactively 'find-grep)
@@ -158,13 +157,46 @@ buffer (to prevent buffer proliferation)."
        "! -path '*.git/*' "
        "! -path '*.venv/*' "
        "! -path '*node_modules/*' "
+       "! -path '*package-lock.json*' "
+       "! -path '*yarn.lock*' "
        "! -path './coverage/*' "
-       ;; "-exec grep -nH -i -e '%s' {} +"
-       "-exec egrep -nH -e '%s' {} +"
+       "-exec egrep %s -nH -e '%s' {} +"
        )
-      
-      search)
-     )))
+      (if ignore-case "-i" "")
+      search
+      ))))
+
+(defun me/projectile-find-grep--no-helm (search)
+  (interactive (list (read-string "Search: " (thing-at-point 'symbol))))
+  (me/-projectile-find-grep search)
+)
+
+(defun me/projectile-find-grep ()
+  "Use C-c C-y to copy existing candidate into minibuffer if you want to modify it."
+  (interactive)
+  (let ((search (helm-comp-read
+                 "Search: "
+                 minibuffer-history
+                 :initial-input (thing-at-point 'symbol)
+                 :buffer "*me/helm/projectile-find-grep*"
+                 ;; :requires-pattern t
+                 )))
+    (me/-projectile-find-grep search))
+)
+
+(defun me/projectile-find-igrep ()
+  "Use C-c C-y to copy existing candidate into minibuffer if you want to modify it."
+  (interactive)
+  (let ((search (helm-comp-read
+                 "Search: "
+                 minibuffer-history
+                 :initial-input (thing-at-point 'symbol)
+                 :buffer "*me/helm/projectile-find-grep*"
+                 ;; :requires-pattern t
+                 )))
+    (me/-projectile-find-grep search t))
+  )
+
 
 
 (provide 'me/utils)

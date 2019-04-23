@@ -2,6 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
+;; Minibuffer
+;; - read-string
+;; - read-from-minibuffer
+;; - completing-read
+;; - helm-comp-read
+;; See utils.el and me/projectile-find-grep
+
 (require 'cl)
 
 (defun me/helm-interactive-example (candidate)

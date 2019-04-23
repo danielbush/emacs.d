@@ -31,3 +31,6 @@ See: http://emacs.stackexchange.com/questions/10900/copy-text-from-emacs-to-os-x
   (interactive)
   (setq interprogram-cut-function 'me/paste-to-osx)
   (setq interprogram-paste-function 'me/copy-from-osx))
+
+(provide 'me/macosx)
+;;; macosx.el ends here

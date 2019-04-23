@@ -90,5 +90,5 @@
      "* docker rm*"
      )))
 
-(provide 'docker)
+(provide 'me/docker)
 ;;; docker.el ends here

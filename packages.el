@@ -135,6 +135,21 @@
         ;; atm.
         eslint-fix
 
+        ;; ------------------------------------------------------------
+        ;; Python
+        elpy
+        ;; https://elpy.readthedocs.io/en/latest/introduction.html
+        ;; (elpy-config) ;; for configuration
+        ;; https://stackoverflow.com/questions/12184846/where-should-virtualenvs-be-created
+        ;; - Uses virtualenvwrapper which uses ~/.virtualenvs/<name>.
+        ;; - (pyvenv-create)
+        ;; - (pyvenv-workon) RET <name> RET - to select a virtualenv
+        ;; - M-& pip install yapf autopep8 flake8 jedi # to install in a virtualenv
+        ;; (elpy-format-code) ;; for prettify + lint
+        jedi
+        ;; - elpy uses "jedi" as a backend (for autocomplete and xref).
+        ;; - Backend, "C-c ." go to definition etc
+        ;; - seems to work without company-jedi
 
         ;; ------------------------------------------------------------
         ;; Other languages

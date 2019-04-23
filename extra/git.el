@@ -22,4 +22,5 @@
     (funcall 'diff-mode))
   )
 
-
+(provide 'me/git)
+;;; git.el ends here

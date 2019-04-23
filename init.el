@@ -10,6 +10,10 @@
 ;; This should hopefully load, if not fix.
 ;; Use M-x me/package-install-my-packages to install my preferred packages.
 
+
+;; (add-to-list 'load-path "~/.emacs.d/me")
+;; (add-to-list 'load-path "~/.emacs.d/me/extra")
+
 (load (concat user-emacs-directory "me/packages.el"))
 
 (defun me/load-unsafe ()
@@ -23,6 +27,7 @@
   (load (concat user-emacs-directory "me/extra/utils.el"))
   (load (concat user-emacs-directory "me/extra/node.el"))
   (load (concat user-emacs-directory "me/extra/tern.el"))
+  (load (concat user-emacs-directory "me/extra/python.el"))
   (load (concat user-emacs-directory "me/extra/terraform.el"))
   (load (concat user-emacs-directory "me/extra/ansible.el"))
   (load (concat user-emacs-directory "me/extra/docker.el"))
