@@ -1,9 +1,9 @@
 (require 'thingatpt)
 (require 'dumb-jump)
 
-;; Jumping on foo.|bar() doesn't behave the same as jumping on foo.|bar.
-;; Probably we can configure this in dumb-jump.
-;; But this is a workaround.
+;; Jumping on foo.|bar() doesn't behave the same as jumping on foo.|bar in js.
+;; Actually "Dumb Jump Ignore Context" = on will fix this problem.
+;; However, this is another workaround - because prompt doesn't have context either.
 
 (defun me/dumb-jump-go-prompt ()
   (interactive)
