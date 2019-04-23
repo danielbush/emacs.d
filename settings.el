@@ -68,8 +68,9 @@ or cascaded."
 (progn
   (defun me/bg-blue () (interactive) (set-background-color "#001133"))
   (defun me/bg-blue () (interactive) (set-background-color "#003344"))
+  (defun me/bg-blue () (interactive) (set-background-color "#002530"))
   (defun me/bg-blue () (interactive) (set-background-color "#001122"))
-  (defun me/bg-blue () (interactive) (set-background-color "#002030"))
+  (defun me/bg-blue () (interactive) (set-background-color "#001f2a"))
   (defun me/bg-black () (interactive) (set-background-color "black"))
   (defun me/bg-dark () (interactive) (set-background-color "gray15"))
   (defun me/bg-dark () (interactive) (set-background-color "gray10"))
@@ -80,6 +81,7 @@ or cascaded."
   (defun me/bg-green () (interactive) (set-background-color "#002929"))
   (defun me/bg-purple () (interactive) (set-background-color "purple4"))
   (defun me/bg-purple () (interactive) (set-background-color "#1f001f"))
+  (defun me/bg-purple () (interactive) (set-background-color "#1a001a"))
   (defun me/bg-red () (interactive) (set-background-color "brown4"))
   (defun me/bg-red () (interactive) (set-background-color "#550000"))
   (defun me/bg-brown () (interactive) (set-background-color "#4f1800")))
