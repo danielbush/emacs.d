@@ -154,6 +154,7 @@ buffer (to prevent buffer proliferation)."
        "! -path './2br-*lib/*' "
        "! -path '*build/*' " ;; any level
        "! -path '*serve/*' "
+       "! -path '*test/e2e/report*' "
        "! -path '*.git/*' "
        "! -path '*.venv/*' "
        "! -path '*node_modules/*' "
