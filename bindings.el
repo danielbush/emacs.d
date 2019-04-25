@@ -39,6 +39,9 @@
   ;; (global-set-key (kbd "M-c") 'avy-goto-line)
   ;; (global-set-key (kbd "M-c") 'avy-goto-word-or-subword-1)
   (global-set-key (kbd "M-c") 'avy-goto-char)
+  (global-set-key (kbd "M-c") 'avy-goto-char-2)
+  (global-set-key (kbd "M-c") 'avy-goto-subword-1)
+  (global-set-key (kbd "M-c") 'avy-goto-word-1)
   (global-set-key (kbd "M-z") 'ace-swap-window)
 
   (global-set-key (kbd "C-M-h") 'windmove-left)
