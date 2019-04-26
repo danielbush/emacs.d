@@ -157,7 +157,7 @@ buffer (to prevent buffer proliferation)."
     "! -path '*package-lock.json*' "
     "! -path '*yarn.lock*' "
     "! -path './coverage/*' "
-    "-exec egrep %s -nH -e '%s' {} +"
+    "-exec egrep %s -nH -e \"%s\" {} +"
     )
    (if ignore-case "-i" "")
    search
@@ -178,15 +178,23 @@ buffer (to prevent buffer proliferation)."
 (defun me/find-grep ()
   "Use C-c C-y to copy existing candidate into minibuffer if you want to modify it."
   (interactive)
-  (let ((search (helm-comp-read
-                 "Search: "
-                 minibuffer-history
-                 :initial-input (thing-at-point 'symbol)
-                 :buffer "*me/helm/find-grep*"
-                 ;; :requires-pattern t
-                 )))
+  (let (
+        (search
+         (read-from-minibuffer "Search: " nil nil nil
+                               'minibuffer-history
+                               (or (thing-at-point 'word) "") ;; M-n to produce it
+                               ))
+        ;; (search (completing-read "Search: " minibuffer-history ) )
+        ;; (search (helm-comp-read
+        ;;           "Search: "
+        ;;           minibuffer-history
+        ;;           :initial-input (thing-at-point 'symbol)
+        ;;           :buffer "*me/helm/find-grep*"
+        ;;           ;; :requires-pattern t
+        ;;           ))
+        )
     (me/-find-grep search))
-)
+  )
 
 (defun me/find-igrep ()
   "Use C-c C-y to copy existing candidate into minibuffer if you want to modify it."
