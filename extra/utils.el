@@ -142,30 +142,64 @@ buffer (to prevent buffer proliferation)."
  ;; "find . ! -name \"*~\" ! -name \"#*#\" -type f -print0 | xargs -0 -e grep -nH -e "
  )
 
+(defun me/-find-grep-cmd (search ignore-case)
+  (format
+   (concat
+    "find . -type f "
+    "! -path './lib/*' " ;; top-level
+    "! -path './2br-*lib/*' "
+    "! -path '*build/*' " ;; any level
+    "! -path '*serve/*' "
+    "! -path '*test/e2e/report*' "
+    "! -path '*.git/*' "
+    "! -path '*.venv/*' "
+    "! -path '*node_modules/*' "
+    "! -path '*package-lock.json*' "
+    "! -path '*yarn.lock*' "
+    "! -path './coverage/*' "
+    "-exec egrep %s -nH -e '%s' {} +"
+    )
+   (if ignore-case "-i" "")
+   search
+   )
+  )
+
 (defun me/-projectile-find-grep (search &optional ignore-case)
   (with-temp-buffer
     (cd (projectile-project-root))
     ;; (call-interactively 'find-grep)
     (find-grep
-     (format
-      (concat
-       "find . -type f "
-       "! -path './lib/*' " ;; top-level
-       "! -path './2br-*lib/*' "
-       "! -path '*build/*' " ;; any level
-       "! -path '*serve/*' "
-       "! -path '*test/e2e/report*' "
-       "! -path '*.git/*' "
-       "! -path '*.venv/*' "
-       "! -path '*node_modules/*' "
-       "! -path '*package-lock.json*' "
-       "! -path '*yarn.lock*' "
-       "! -path './coverage/*' "
-       "-exec egrep %s -nH -e '%s' {} +"
-       )
-      (if ignore-case "-i" "")
-      search
-      ))))
+     (me/-find-grep-cmd search ignore-case))))
+
+(defun me/-find-grep (search &optional ignore-case)
+  (find-grep
+   (me/-find-grep-cmd search ignore-case)))
+
+(defun me/find-grep ()
+  "Use C-c C-y to copy existing candidate into minibuffer if you want to modify it."
+  (interactive)
+  (let ((search (helm-comp-read
+                 "Search: "
+                 minibuffer-history
+                 :initial-input (thing-at-point 'symbol)
+                 :buffer "*me/helm/find-grep*"
+                 ;; :requires-pattern t
+                 )))
+    (me/-find-grep search))
+)
+
+(defun me/find-igrep ()
+  "Use C-c C-y to copy existing candidate into minibuffer if you want to modify it."
+  (interactive)
+  (let ((search (helm-comp-read
+                 "Search: "
+                 minibuffer-history
+                 :initial-input (thing-at-point 'symbol)
+                 :buffer "*me/helm/find-grep*"
+                 ;; :requires-pattern t
+                 )))
+    (me/-find-grep search t))
+)
 
 (defun me/projectile-find-grep--no-helm (search)
   (interactive (list (read-string "Search: " (thing-at-point 'symbol))))
