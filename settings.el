@@ -59,6 +59,10 @@ or cascaded."
                               "*helm*"
                               "*helm find files*"
                               "*helm mini*"
+                              "*helm occur*"
+                              "*helm file completions*"
+                              "*helm projectile: me*"
+                              "*helm ag*"
                               "*helm M-x*"
                               ))
 
