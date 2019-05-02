@@ -4,6 +4,7 @@
 
 (require 'projectile)
 (require 'thingatpt)
+(require 'extra/helm)
 
 ; https://www.emacswiki.org/emacs/ElispCookbook#toc6
 (defun me/chomp (str)
@@ -228,5 +229,5 @@ buffer (to prevent buffer proliferation)."
     (me/-projectile-find-grep search t))
   )
 
-(provide 'me/utils)
+(provide 'extra/utils)
 ;;; utils.el ends here

@@ -1,13 +1,12 @@
-;;; package --- me/tern
+;;; extra/tern.el --- me/tern
 ;;; Commentary:
 ;; https://emacs.cafe/emacs/javascript/setup/2017/05/09/emacs-setup-javascript-2.html
 
+;;; Code:
+
 (require 'company)
 (require 'company-tern)
-;; (require 'me/dump-jump "~/.emacs.d/me/extra/dumb-jump")
-(load "~/.emacs.d/me/extra/dumb-jump")
-
-;;; Code:
+(require 'extra/dumb-jump)
 
 (add-to-list 'company-backends 'company-tern)
 (add-hook 'js2-mode-hook (lambda ()
@@ -44,5 +43,5 @@
 (add-hook
  'groovy-mode-hook 'me/groovy-mode-hook)
 
-(provide 'me/tern)
+(provide 'extra/tern)
 ;;; tern.el ends here

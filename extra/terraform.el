@@ -1,7 +1,9 @@
-
+;;; extra/terraform.el -- stuff
 ;;; Commentary:
 
 ;;; Code:
+
+(require 'projectile)
 
 (defun me/tf-test ()
   "So I can test stuff."
@@ -55,5 +57,5 @@
     )
   )
 
-(provide 'terraform)
+(provide 'extra/terraform)
 ;;; terraform.el ends here

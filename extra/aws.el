@@ -1,7 +1,7 @@
 ;;; package --- some node cli utilities
 ;;; Commentary:
 ;;; Code:
-(require 'me/utils (concat default-directory "utils.el"))
+(require 'extra/utils)
 
 (defcustom me/aws-cli "/home/danb/venv/aws/bin/aws" "Path to aws cli." :group 'me/aws)
 
@@ -12,5 +12,5 @@
    (me/make-command-buffer-name (format "aws %s" cmd)))
   )
 
-(provide 'me/aws)
+(provide 'extra/aws)
 ;;; aws.el ends here

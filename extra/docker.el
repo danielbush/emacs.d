@@ -1,3 +1,5 @@
+;;; extra/docker.el -- stuff
+;;; Commentary:
 ;;; Code:
 
 (require 'thingatpt)
@@ -90,5 +92,5 @@
      "* docker rm*"
      )))
 
-(provide 'me/docker)
+(provide 'extra/docker)
 ;;; docker.el ends here

@@ -1,3 +1,9 @@
+;;; frames.el -- stuff
+;;; Commentary:
+
+(require 'settings)
+
+;;; Code:
 
 (defun me/setup-frames ()
   "Only run this at the beginning."
@@ -9,5 +15,5 @@
   (make-frame-command)
   (set-frame-name "3"))
 
-(provide 'me/frames)
+(provide 'extra/frames)
 ;;; frames.el ends here

@@ -1,3 +1,8 @@
+;;; extra/ansible -- stuff
+;;; Commentary:
+;;; Code:
+
+(require 'projectile)
 
 ;; You may need something like this to set ansible depending on where it is:
 ;;
@@ -28,5 +33,5 @@
     )
   )
 
-(provide 'me/ansible)
+(provide 'extra/ansible)
 ;;; ansible.el ends here

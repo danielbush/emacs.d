@@ -1,3 +1,9 @@
+;;; extra/elscreen.el -- stuff
+;;; Commentary:
+(require 'elscreen)
+
+;;; Code:
+
 (defun me/elscreen-new (name)
   (interactive "sName: ")
   (elscreen-create)
@@ -40,14 +46,11 @@
   (elscreen-goto 0)
 )
 
-
-
-
 (defun me/elscreen-goto-screen (num)
   "NUM should be an integer."
   (interactive)
   (elscreen-goto num) (message (elscreen-get-screen-nickname num))
   )
 
-(provide 'me/elsccreen)
+(provide 'extra/elscreen)
 ;;; elscreen.el ends here

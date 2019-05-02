@@ -124,5 +124,5 @@ This seems to be the best way to call helm."
                 (shell-command-to-string (concat "ag -l -G . ." ))))))
   )
 
-(provide 'me/helm)
+(provide 'extra/helm)
 ;;; helm.el ends here

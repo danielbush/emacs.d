@@ -1,3 +1,7 @@
+;;; extra/macosx -- stuff
+;;; Commentary:
+;;; Code:
+
 (defun me/mac-load-PATH ()
   "Add /usr/local/bin to path for EMACS.
 
@@ -32,5 +36,5 @@ See: http://emacs.stackexchange.com/questions/10900/copy-text-from-emacs-to-os-x
   (setq interprogram-cut-function 'me/paste-to-osx)
   (setq interprogram-paste-function 'me/copy-from-osx))
 
-(provide 'me/macosx)
+(provide 'extra/macosx)
 ;;; macosx.el ends here

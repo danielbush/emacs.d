@@ -1,4 +1,4 @@
-;;; package --- utilities for managing windows in a frame
+;;; extra/windows --- utilities for managing windows in a frame
 ;;;
 ;;; Commentary:
 ;;; http://emacs.stackexchange.com/questions/2710/switching-between-window-layouts
@@ -79,5 +79,5 @@
     (puthash name window-configuration me/windows)
     ))
 
-(provide 'me/windows)
+(provide 'extra/windows)
 ;;; windows.el ends here

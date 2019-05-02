@@ -18,5 +18,5 @@
   )
 
 
-(provide 'me/dumb-jump)
+(provide 'extra/dumb-jump)
 ;;; dumb-jump.el ends here

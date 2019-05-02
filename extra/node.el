@@ -1,9 +1,10 @@
-;;; package --- some node cli utilities
+;;; extra/node.el --- some node cli utilities
 ;;; Commentary:
 ;;; Code:
 (require 's)
 (require 'projectile)
-(require 'me/utils (concat default-directory "utils.el"))
+(require 'extra/utils)
+(require 'extra/helm)
 
 (defconst me/node/orig-exec-path exec-path)
 (defconst me/node/orig-PATH (getenv "PATH"))
@@ -428,5 +429,5 @@ NODE_MODULES_PATH example: node_modules/eslint/bin/eslint.js."
 ;; --------------------------------------------------------------------------------
 
 
-(provide 'me/node)
+(provide 'extra/node)
 ;;; node.el ends here

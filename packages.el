@@ -1,6 +1,10 @@
 ;; 25-Sep-2016 Packaging taken from http://stackoverflow.com/questions/14836958/updating-packages-in-emacs
 
-(setq me/packages
+(require 'cl)
+
+;;; Code:
+
+(defvar me/packages
       '(
 
         hemisu-theme
@@ -188,12 +192,14 @@
         (package-install pkg)))))
 
 (defun me/package-list-unaccounted-packages ()
-  "Like `package-list-packages', but shows only the packages that
-  are installed and are not in `me/packages'.  Useful for
-  cleaning out unwanted packages."
+  "Like `package-list-packages', but show only the packages that are installed and are not in `packages'.
+Useful for cleaning out unwanted packages."
   (interactive)
   (package-show-package-list
    (remove-if-not (lambda (x) (and (not (memq x me/packages))
                                    (not (package-built-in-p x))
                                    (package-installed-p x)))
                   (mapcar 'car package-archive-contents))))
+
+(provide 'packages)
+;;; packages.el ends here

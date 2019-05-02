@@ -1,11 +1,11 @@
-;;; package --- some personal settings, core emacs
+;;; settings.el --- some personal settings, core emacs
 ;;; Commentary:
-;;; 
-;; Viper - so that I can use vi keys
+;;; Code:
 
-;; So I have vi keybindings.
-(setq viper-mode t)
+
+;; Viper - so that I can use vi keys
 (require 'viper)
+(setq viper-mode t)
 ;; Other - PUT THESE IN ~/.viper:
 ;(setq viper-expert-level  '5)
 ;(setq viper-inhibit-startup-message  't)
@@ -44,6 +44,7 @@ or cascaded."
 
 ;; winner so I have window history
 
+(require 'winner)
 (winner-mode 1)
 
 (setq winner-boring-buffers '("*Completions*"
@@ -141,3 +142,6 @@ or cascaded."
 (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 
 (set-face-attribute 'region nil :foreground "#777" :background "#ffa")
+
+(provide 'settings)
+;;; settings.el ends here

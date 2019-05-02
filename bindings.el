@@ -1,3 +1,6 @@
+;;; bindings.el -- stuff
+;;; Commentary:
+;;; Code:
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x b") 'helm-mini)
@@ -107,3 +110,7 @@
 (global-set-key (kbd "C-x C-n") 'other-frame)
 
 (global-set-key (kbd "M-r")   'helm-recentf)
+
+(provide 'bindings)
+;;; bindings.el ends here
+
