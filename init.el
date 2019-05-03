@@ -24,6 +24,7 @@
   (require 'extra/macosx)
   (require 'extra/helm)
   (require 'extra/utils)
+  (require 'extra/find-grep)
   (require 'extra/node)
   (require 'extra/tern)
   (require 'extra/python)
@@ -57,10 +58,6 @@
   (me/font-small)
   )
 
-(custom-set-variables
- '(grep-find-command
-   "find . -type f ! -path '*/lib/*' ! -path './.git/*' ! -path './.venv/*' ! -path '*/node_modules/*'  ! -path '*/serve/*' ! -path '*/coverage/*' -exec grep  -nH -i -e {} +")
-)
-
+;; (me/load-unsafe)
 (provide 'init)
 ;;; init ends here
