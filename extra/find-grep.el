@@ -1,4 +1,4 @@
-;;; extra/find-grep.el -- stuff
+;;; extra/find-grep.el -- projectile find-grep and related
 ;;; Commentary:
 ;;; Code:
 
@@ -28,16 +28,15 @@
    )
   )
 
-;; (custom-set-variables
-;;  '(grep-find-command
-;;    "find . -type f ! -path '*/lib/*' ! -path './.git/*' ! -path './.venv/*' ! -path '*/node_modules/*'  ! -path '*/serve/*' ! -path '*/coverage/*' -exec grep  -nH -i -e {} +")
-;; )
+(ignore
+ (custom-set-variables
+  '(grep-find-command
+    "find . -type f ! -path '*/lib/*' ! -path './.git/*' ! -path './.venv/*' ! -path '*/node_modules/*'  ! -path '*/serve/*' ! -path '*/coverage/*' -exec grep  -nH -i -e {} +")
+  )
 
-(grep-apply-setting
- 'grep-find-command
- "find . -type f ! -path './lib/*' ! -path './.git/*' ! -path './.venv/*' ! -path './node_modules/*'  ! -path './serve/*' ! -path './coverage/*' -exec grep  -nH -i -e {} +"
  ;; "find . ! -name \"*~\" ! -name \"#*#\" -type f -print0 | xargs -0 -e grep -nH -e "
  )
+
 
 (grep-apply-setting 'grep-find-command (me/-find-grep-cmd "" nil))
 
