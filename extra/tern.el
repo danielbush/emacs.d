@@ -18,15 +18,5 @@
 (define-key tern-mode-keymap (kbd "M-,") nil)
 (define-key tern-mode-keymap (kbd "C-M-.") nil)
 
-(defun me/mode-hook(mode-map)
-
-   (hs-minor-mode 1)
-   (define-key mode-map (kbd "C-c C-f") 'hs-hide-level)
-   (define-key mode-map (kbd "C-c C-v") 'hs-show-all)
-   (define-key mode-map (kbd "C-c C-b") 'hs-toggle-hiding)
-   ;; (define-key mode-map (kbd "C-c C-b") 'hs-show-block)
-   ;; (define-key mode-map (kbd "C-c C-h") 'hs-hide-block)
-  )
-
 (provide 'extra/tern)
 ;;; tern.el ends here

@@ -38,6 +38,7 @@
   (require 'extra/aws)
   (require 'extra/git)
   (require 'extra/dumb-jump)
+  (require 'extra/hs)
 
   (me/setup-elscreen)
   ;; (me/bg-black)
