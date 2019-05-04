@@ -40,12 +40,11 @@
   (require 'extra/dumb-jump)
   (require 'extra/hs)
 
-  (me/setup-elscreen)
-  ;; (me/bg-black)
-  (me/font-small)
 
-  (select-frame (make-frame))
-  (me/setup-elscreen-alternative-for-domain)
+  ;; (select-frame (make-frame))
+  ;; (me/setup-elscreen-alternative-for-domain)
+  ;; (me/bg-dark)
+  (me/setup-frames)
   )
 
 (defun me/load-unsafe-for-domain ()
@@ -53,12 +52,11 @@
   (me/load-unsafe)
   (me/mac-fonts)
   (me/mac-load-PATH)
-  (me/setup-elscreen)
-  (me/setup-frames)
+  (select-frame-by-name "3")
   (me/setup-elscreen-alternative-for-domain)
-  (me/font-small)
+  (me/font-med)
+  ;; (me/font-small)
   )
 
-;; (me/load-unsafe)
 (provide 'init)
 ;;; init ends here

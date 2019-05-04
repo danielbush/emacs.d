@@ -34,6 +34,15 @@
   (elscreen-goto 0)
 )
 
+(defun me/setup-elscreen-admin ()
+  "Preload some elscreens."
+  (interactive)
+  (me/elscreen-start)
+  (me/elscreen-make "1" "~/.emacs.d/me" t)
+  (me/elscreen-make "2" "~/todos")
+  (me/elscreen-make "3" "~/")
+  (elscreen-goto 0)
+)
 (defun me/setup-elscreen-alternative-for-domain ()
   "Preload some elscreens."
   (interactive)
