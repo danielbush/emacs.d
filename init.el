@@ -26,7 +26,7 @@
   (require 'extra/utils)
   (require 'extra/find-grep)
   (require 'extra/node)
-  (require 'extra/tern)
+  ;; (require 'extra/tern)
   (require 'extra/python)
   (require 'extra/terraform)
   (require 'extra/ansible)
