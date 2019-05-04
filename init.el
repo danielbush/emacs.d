@@ -42,10 +42,6 @@
   (require 'extra/lsp)
   ;; (require 'extra/tern)
 
-
-  ;; (select-frame (make-frame))
-  ;; (me/setup-elscreen-alternative-for-domain)
-  ;; (me/bg-dark)
   (me/setup-frames)
   )
 
@@ -55,9 +51,7 @@
   (me/mac-fonts)
   (me/mac-load-PATH)
   (select-frame-by-name "3")
-  (me/setup-elscreen-alternative-for-domain)
   (me/font-med)
-  ;; (me/font-small)
   )
 
 (provide 'init)

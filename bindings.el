@@ -28,16 +28,9 @@
 
 
 (progn
-  (global-set-key (kbd "C-1") '(lambda () (interactive) (me/elscreen-goto-screen 0)))
-  (global-set-key (kbd "C-2") '(lambda () (interactive) (me/elscreen-goto-screen 1)))
-  (global-set-key (kbd "C-3") '(lambda () (interactive) (me/elscreen-goto-screen 2)))
-  (global-set-key (kbd "C-4") '(lambda () (interactive) (me/elscreen-goto-screen 3)))
-  (global-set-key (kbd "C-5") '(lambda () (interactive) (me/elscreen-goto-screen 4)))
-  (global-set-key (kbd "C-6") '(lambda () (interactive) (me/elscreen-goto-screen 5)))
-  (global-set-key (kbd "C-7") '(lambda () (interactive) (me/elscreen-goto-screen 6)))
-  (global-set-key (kbd "C-8") '(lambda () (interactive) (me/elscreen-goto-screen 7)))
-  (global-set-key (kbd "C-9") '(lambda () (interactive) (me/elscreen-goto-screen 8)))
-  (global-set-key (kbd "C-0") '(lambda () (interactive) (me/elscreen-goto-screen 9)))
+  (global-set-key (kbd "C-1") '(lambda () (interactive) (elscreen-goto 0)))
+  (global-set-key (kbd "C-2") '(lambda () (interactive) (elscreen-goto 1)))
+  (global-set-key (kbd "C-3") '(lambda () (interactive) (elscreen-goto 2)))
 
   ;; (global-set-key (kbd "M-c") 'avy-goto-line)
   ;; (global-set-key (kbd "M-c") 'avy-goto-word-or-subword-1)
