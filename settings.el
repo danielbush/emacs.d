@@ -3,14 +3,14 @@
 ;;; Code:
 
 
-;; Viper - so that I can use vi keys
-(require 'viper)
-(setq viper-mode t)
+(setq-default viper-mode t)
 ;; Other - PUT THESE IN ~/.viper:
-;(setq viper-expert-level  '5)
-;(setq viper-inhibit-startup-message  't)
-;(setq viper-want-ctl-h-help t)
-;(setq-default viper-no-multiple-ESC t)
+(setq-default viper-expert-level  '5)
+(setq-default viper-inhibit-startup-message  't)
+(setq-default viper-want-ctl-h-help t)
+(setq-default viper-no-multiple-ESC t)
+;; Require viper AFTER setting viper-mode and other configs.
+(require 'viper)
 
 (menu-bar-mode 0)
 (tool-bar-mode 0)
