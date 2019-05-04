@@ -30,9 +30,12 @@
 
         helm
         helm-ag
+        helm-ls-git
+        helm-swoop ;; oocur
+
         projectile
         helm-projectile
-        helm-swoop ;; oocur
+
         avy ;; jump to lines
         ace-window ;; swap windows
         switch-window
@@ -50,7 +53,9 @@
         ;; Git
 
         magit
-        helm-ls-git
+        ;; Replaces https://github.com/vermiculus/magithub .
+        ;; https://emacsair.me/2018/12/19/forge-0.1/
+        forge
 
         ;; ------------------------------------------------------------
         ;; Linting
@@ -69,17 +74,32 @@
         evil ;; alternative to viper
 
         ;; ------------------------------------------------------------
-        ;; Tagging, jumping, cross referencing
+        ;; Tagging, jumping, cross referencing, autocomplete, intellisense
 
         ;; https://www.emacswiki.org/emacs/JumpToDefinition
         ;; https://github.com/jacktasia/dumb-jump
         dumb-jump
 
-        ;; ------------------------------------------------------------
-        ;; Autocomplete
+        ;;; 4-May-2019 - Haven't figured xref / xref-js2 out.
+        ;; xref-js2 helm-xref
+
 
         ;; https://emacs.stackexchange.com/questions/712/what-are-the-differences-between-autocomplete-and-company-mode
         company ;; probably favour company over auto-complete
+        company-flow
+        company-tern ;; npm i -g tern
+
+        ;;; lsp-mode
+        ;;; https://github.com/emacs-lsp/lsp-mode/#configuration
+        ;;; - npm i -g javascript-typescript-langserver
+        ;;; - npm i -g typescript-language-server; npm i -g typescript
+        lsp-mode
+        lsp-ui ;;; will load automatically if lsp-mode is enabled
+        
+        ;; lsp-javascript-flow       ;; DONT NEED - this is now built-in to lsp-mode
+        ;; lsp-javascript-typescript ;; DONT NEED - this is now built-in to lsp-mode
+
+        company-lsp
 
         auto-complete ;; ac-*
         ac-helm
@@ -110,13 +130,12 @@
 
         js2-mode
         rjsx-mode
+
         nvm
         pug-mode
         ;; flow-mode
         flow-minor-mode
         flycheck-flow
-        company-flow
-        company-tern ;; npm i -g tern
 
         ;; ------------------------------------------------------------
         ;; js / linting
