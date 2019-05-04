@@ -31,7 +31,6 @@
   (me/elscreen-make "1" "~/projects" t)
   (me/elscreen-make "2" "~/projects")
   (me/elscreen-make "3" "~/projects")
-  (me/elscreen-make "4" "~/projects")
   (elscreen-goto 0)
 )
 
@@ -42,7 +41,6 @@
   (me/elscreen-make "1" "~/.emacs.d/me" t)
   (me/elscreen-make "2" "~/notes")
   (me/elscreen-make "3" "~/")
-  (me/elscreen-make "4" "~/")
   (elscreen-goto 0)
 )
 
