@@ -19,8 +19,13 @@
   "Stuff that may break in a new EMACS."
   (interactive)
   (server-start)
+  (message "init.el - installing new packages")
+  (me/package-install-my-packages)
+  (message "init.el - loading settings")
   (require 'settings)
+  (message "init.el - loading bindings")
   (require 'bindings)
+  (message "init.el - loading extra/*")
   (require 'extra/macosx)
   (require 'extra/helm)
   (require 'extra/utils)

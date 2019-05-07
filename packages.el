@@ -1,8 +1,10 @@
+;;; me/packages.el -- my packages
+;;; Commentary:
 ;; 25-Sep-2016 Packaging taken from http://stackoverflow.com/questions/14836958/updating-packages-in-emacs
 
-(require 'cl)
-
 ;;; Code:
+
+(require 'cl)
 
 (defvar me/packages
       '(
@@ -32,6 +34,7 @@
         helm-ag
         helm-ls-git
         helm-swoop ;; oocur
+        loccur
 
         projectile
         helm-projectile
@@ -44,6 +47,7 @@
         elscreen
         ;; elscreen-persist
         golden-ratio
+        beacon
 
         ;; Remove?
         swiper
@@ -190,6 +194,10 @@
         csharp-mode
         haskell-mode
 
+        ;; ------------------------------------------------------------
+        ;; frivolous
+
+        chess
 
         ))
 

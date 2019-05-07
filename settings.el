@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'beacon)
+
 
 (setq-default viper-mode t)
 ;; Other - PUT THESE IN ~/.viper:
@@ -18,6 +20,8 @@
 
 ;; Enable helm across emacs (eg customize-options)
 (helm-mode 1)
+
+(beacon-mode 1)
 
 (show-paren-mode 1)
 
