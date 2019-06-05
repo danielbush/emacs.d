@@ -3,9 +3,22 @@
 ;;; Code:
 
 (global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x b") 'switch-to-buffer)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-c b") 'helm-projectile-switch-to-buffer)
 (global-set-key (kbd "C-c C-b") 'helm-projectile-switch-to-buffer)
+
+;;; Multi search open buffers can be useful.
+;;; 'helm-multi-swoop-projectile
+;;; 'helm-multi-swoop-all
+(require 'magit)
+;; (global-set-key (kbd "C-c C-c C-b") 'helm-multi-swoop-projectile)
+;; (define-key prog-mode-map (kbd "C-c C-c C-b") 'helm-multi-swoop-projectile)
+;; (define-key magit-mode-map (kbd "C-c C-c C-b") 'helm-multi-swoop-projectile)
+;; (define-key magit-log-mode-map (kbd "C-c C-c C-b") 'helm-multi-swoop-projectile)
+;; (define-key magit-status-mode-map (kbd "C-c C-c C-b") 'helm-multi-swoop-projectile)
+;; (define-key magit-revision-mode-map (kbd "C-c C-c C-b") 'helm-multi-swoop-projectile)
+
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key
  (kbd "C-x C-b")
