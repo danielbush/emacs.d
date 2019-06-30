@@ -91,18 +91,69 @@
         ;; https://emacs.stackexchange.com/questions/712/what-are-the-differences-between-autocomplete-and-company-mode
         company ;; probably favour company over auto-complete
         company-flow
-        company-tern ;; npm i -g tern
+        helm-company
+
+        ;; company-tern ;; npm i -g tern
 
         ;;; lsp-mode
-        ;;; https://github.com/emacs-lsp/lsp-mode/#configuration
-        ;;; - npm i -g javascript-typescript-langserver
-        ;;; - npm i -g typescript-language-server; npm i -g typescript
+        ;;;
+        ;;; READING
+        ;;; - "you can use typescript to parse and infer types for js"
+        ;;;   - https://medium.com/front-end-weekly/including-typescript-definitions-in-a-non-typescript-project-using-visual-studio-code-vsc-eac62765fd
+        ;;;     - you can use typescript support in js
+        ;;;     - NOTE: it uses "typings", use @types/<package> instead now
+        ;;;   - https://www.reddit.com/r/emacs/comments/68zacv/using_tidemode_to_typecheck_javascript/
+        ;;;     - "the latest release of typescript supports parsing and inferring types for js"
+        ;;;     - introduces jsconfig.json (cf tsconfig.json)
+        ;;;       - this seems to imply tide is hooking into lsp (vscode)?
+        ;;; - "add a package (eg @types/<package-name> without modifying project)"
+        ;;;   - https://github.com/yarnpkg/yarn/issues/1743
+        ;;; - "completion after dot"
+        ;;;   - https://github.com/emacs-eclim/emacs-eclim/issues/10
+        ;;;   - doesn't wfm - company-lsp needs tweaking?
+        ;;; - tide - for js as well as ts
+        ;;;   - https://github.com/ananthakumaran/tide
+        ;;;   - https://www.reddit.com/r/emacs/comments/68zacv/using_tidemode_to_typecheck_javascript/
+        ;;;
+        ;;; PROCEDURE
+        ;;; - Install js code:
+        ;;;   https://github.com/emacs-lsp/lsp-mode/#configuration
+        ;;;   - npm i -g javascript-typescript-langserver
+        ;;;   ? npm i -g typescript-language-server; npm i -g typescript
+        ;;;     - I think this is for actual typescript
+        ;;;   - install typescript types; if you don't do this lsp ui will show
+        ;;;     error "Cannot find module 'react'" etc.
+        ;;;     - npm i @types/react --save-dev|--no-save # similarly @types/react-dom
+        ;;;     - yarn add --no-lockfile @types/react ; yarn remove @types/react
+        ;;; - Add jsconfig.json file to root of project for lsp-mode
+        ;;;   https://code.visualstudio.com/docs/languages/jsconfig
+        ;;;   {
+        ;;;     "compilerOptions": {
+        ;;;       "target": "es2017",
+        ;;;       "allowSyntheticDefaultImports": true,
+        ;;;       "noEmit": true,
+        ;;;       "checkJs": true,
+        ;;;       "jsx": "react",
+        ;;;       "lib": [ "dom", "es2017" ]
+        ;;;     }
+        ;;;   }
+        ;;;   - this configures the language server for javascript
+        ;;;   - M-x magit status; 'i', 'p' (.git/info/exclude)
+        ;;; - customize-group company
+        ;;;   - I delete all the backends
+        ;;;   - add "company-lsp" (option "D")
+        ;;; - M-x lsp ; in project buffer; starts "javascript-typescript-stdio" process
+        ;;; - Restarting
+        ;;;   - M-x lsp-restart-workspace
+        ;;;   - pkill -f javascript-typescript-stdio # kill it
+        ;;; - M-x customize-group lsp-ui
+        ;;;   - disable sideline - sideline is the annoying one that clutters the screen
+        ;;;   - enable flycheck
+
         lsp-mode
         lsp-ui ;;; will load automatically if lsp-mode is enabled
-        
         ;; lsp-javascript-flow       ;; DONT NEED - this is now built-in to lsp-mode
         ;; lsp-javascript-typescript ;; DONT NEED - this is now built-in to lsp-mode
-
         company-lsp
 
         auto-complete ;; ac-*
