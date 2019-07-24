@@ -70,11 +70,21 @@
    (me/-find-grep-cmd search ignore-case)))
 
 (defun me/-projectile-find-grep (search &optional ignore-case)
-  (with-temp-buffer
-    (cd (projectile-project-root))
-    ;; (call-interactively 'find-grep)
-    (find-grep
-     (me/-find-grep-cmd search ignore-case))))
+  (cd (projectile-project-root))
+  (find-grep
+   (me/-find-grep-cmd search ignore-case))
+  (if (get-buffer "*grep*")
+      (progn
+        (message "here")
+        (with-current-buffer "*grep*"
+          (let ((name (concat  "*grep:" search "*")))
+            (if (get-buffer name) (kill-buffer name))
+            (rename-buffer name))
+          )
+        )
+    )
+
+  )
 
 ;;; --------------------------------------------------------------------------------
 ;;; Interface
