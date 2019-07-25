@@ -116,20 +116,28 @@
         ;;;   - https://www.reddit.com/r/emacs/comments/68zacv/using_tidemode_to_typecheck_javascript/
         ;;;
         ;;; PROCEDURE
-        ;;; - Install js code:
-        ;;;   https://github.com/emacs-lsp/lsp-mode/#configuration
+        ;;; https://github.com/emacs-lsp/lsp-mode/#configuration
+        ;;; - Install lsp backends
         ;;;   - npm i -g javascript-typescript-langserver
-        ;;;   ? npm i -g typescript-language-server; npm i -g typescript
-        ;;;     - I think this is for actual typescript
-        ;;;   - install typescript types; if you don't do this lsp ui will show
-        ;;;     error "Cannot find module 'react'" etc.
-        ;;;     - npm i @types/react --save-dev|--no-save # similarly @types/react-dom
-        ;;;     - yarn add --no-lockfile @types/react ; yarn remove @types/react
+        ;;;     ? npm i -g typescript-language-server; npm i -g typescript
+        ;;;       - I think this is for actual typescript
+        ;;;   - npm install -g vscode-css-languageserver-bin
+        ;;;   - flow
+        ;;;     - https://github.com/facebookarchive/flow-language-server (archived)
+        ;;;     - "Language Server Protocol is now supported natively
+        ;;;       in the core flow program by running: flow lsp"
+        ;;;     - you probably want to NOT RUN javascript-typescript-langserver
+        ;;;       as it will get confused by flow annotations and you see a lot
+        ;;;       of flymake errors on them.
+        ;;; - Install typescript types; if you don't do this lsp ui will show
+        ;;;   error "Cannot find module 'react'" etc.
+        ;;;   - npm i @types/react --save-dev|--no-save # similarly @types/react-dom
+        ;;;   - yarn add --no-lockfile @types/react ; yarn remove @types/react
         ;;; - Add jsconfig.json file to root of project for lsp-mode
         ;;;   https://code.visualstudio.com/docs/languages/jsconfig
         ;;;   {
         ;;;     "compilerOptions": {
-        ;;;       "target": "es2017",
+        ;;;       "target": "es2018",
         ;;;       "allowSyntheticDefaultImports": true,
         ;;;       "noEmit": true,
         ;;;       "checkJs": true,
@@ -139,22 +147,46 @@
         ;;;   }
         ;;;   - this configures the language server for javascript
         ;;;   - M-x magit status; 'i', 'p' (.git/info/exclude)
+        ;;;     - in case you are wondering, vscode has the concept of an "implicit" config.
+        ;;;       "To enable type checking for all JavaScript files
+        ;;;       without changing any code, just add
+        ;;;       "javascript.implicitProjectConfig.checkJs": true to
+        ;;;       your workspace or user settings. This enables type
+        ;;;       checking for any JavaScript file that is not part of
+        ;;;       a jsconfig.json or tsconfig.json project"
         ;;; - customize-group company
         ;;;   - I delete all the backends
         ;;;   - add "company-lsp" (option "D")
-        ;;; - M-x lsp ; in project buffer; starts "javascript-typescript-stdio" process
+        ;;;   - It's possible me/company-lsp-setup might do this.
+        ;;; USAGE
+        ;;; - M-x lsp ; in js buffer; starts "javascript-typescript-stdio" process etc
+        ;;; - M-x lsp ; in css buffer; starts *another* css lsp process
+        ;;; - ... and so on
+        ;;; - M-x lsp-goto-type-definition ; should work on Fragment (jumps to @types/react)
         ;;; - Restarting
         ;;;   - M-x lsp-restart-workspace
-        ;;;   - pkill -f javascript-typescript-stdio # kill it
+        ;;;     - this does the job
+
+        lsp-mode
+
+        ;;; lsp-ui will load automatically if lsp-mode is enabled.
+        ;;; 24-Jul-2019 - Removing it to minimize lsp footprint.
+        ;; lsp-ui
         ;;; - M-x customize-group lsp-ui
         ;;;   - disable sideline - sideline is the annoying one that clutters the screen
         ;;;   - enable flycheck
 
-        lsp-mode
-        lsp-ui ;;; will load automatically if lsp-mode is enabled
         ;; lsp-javascript-flow       ;; DONT NEED - this is now built-in to lsp-mode
         ;; lsp-javascript-typescript ;; DONT NEED - this is now built-in to lsp-mode
+
         company-lsp
+        ;;; M-x company-complete-common-or-cycle - may get you autocomplete on blank
+        ;;; dot completion wfm for things like React.| .  This might be @types/react
+        ;;; kicking in?
+
+        helm-lsp
+        ;;; M-x helm-lsp-workspace-symbol (look up a symbol pattern)
+        ;;; M-x helm-lsp-global-workspace-symbol (look up a symbol pattern)
 
         auto-complete ;; ac-*
         ac-helm
