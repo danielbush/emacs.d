@@ -145,7 +145,9 @@
         ;;;   - add "company-lsp" (option "D")
         ;;;   - It's possible me/company-lsp-setup might do this.
         ;;; USAGE
-        ;;; - M-x lsp ; in project buffer; starts "javascript-typescript-stdio" process etc
+        ;;; - M-x lsp ; in js buffer; starts "javascript-typescript-stdio" process etc
+        ;;; - M-x lsp ; in css buffer; starts *another* css lsp process
+        ;;; - ... and so on
         ;;; - M-x lsp-goto-type-definition ; should work on Fragment (jumps to @types/react)
         ;;; - Restarting
         ;;;   - M-x lsp-restart-workspace
