@@ -122,6 +122,13 @@
         ;;;     ? npm i -g typescript-language-server; npm i -g typescript
         ;;;       - I think this is for actual typescript
         ;;;   - npm install -g vscode-css-languageserver-bin
+        ;;;   - flow
+        ;;;     - https://github.com/facebookarchive/flow-language-server (archived)
+        ;;;     - "Language Server Protocol is now supported natively
+        ;;;       in the core flow program by running: flow lsp"
+        ;;;     - you probably want to NOT RUN javascript-typescript-langserver
+        ;;;       as it will get confused by flow annotations and you see a lot
+        ;;;       of flymake errors on them.
         ;;; - Install typescript types; if you don't do this lsp ui will show
         ;;;   error "Cannot find module 'react'" etc.
         ;;;   - npm i @types/react --save-dev|--no-save # similarly @types/react-dom
@@ -130,7 +137,7 @@
         ;;;   https://code.visualstudio.com/docs/languages/jsconfig
         ;;;   {
         ;;;     "compilerOptions": {
-        ;;;       "target": "es2017",
+        ;;;       "target": "es2018",
         ;;;       "allowSyntheticDefaultImports": true,
         ;;;       "noEmit": true,
         ;;;       "checkJs": true,
@@ -140,6 +147,13 @@
         ;;;   }
         ;;;   - this configures the language server for javascript
         ;;;   - M-x magit status; 'i', 'p' (.git/info/exclude)
+        ;;;     - in case you are wondering, vscode has the concept of an "implicit" config.
+        ;;;       "To enable type checking for all JavaScript files
+        ;;;       without changing any code, just add
+        ;;;       "javascript.implicitProjectConfig.checkJs": true to
+        ;;;       your workspace or user settings. This enables type
+        ;;;       checking for any JavaScript file that is not part of
+        ;;;       a jsconfig.json or tsconfig.json project"
         ;;; - customize-group company
         ;;;   - I delete all the backends
         ;;;   - add "company-lsp" (option "D")
@@ -151,7 +165,7 @@
         ;;; - M-x lsp-goto-type-definition ; should work on Fragment (jumps to @types/react)
         ;;; - Restarting
         ;;;   - M-x lsp-restart-workspace
-        ;;;   - pkill -f javascript-typescript-stdio # kill it
+        ;;;     - this does the job
 
         lsp-mode
 
