@@ -129,7 +129,15 @@
         ;;;     - you probably want to NOT RUN javascript-typescript-langserver
         ;;;       as it will get confused by flow annotations and you see a lot
         ;;;       of flymake errors on them.
-        ;;; - Install typescript types; if you don't do this lsp ui will show
+        ;;; - Note on typescript in js
+        ;;;   - https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html
+        ;;;     "In a .js file, types can often be inferred just like
+        ;;;     in .ts files. Likewise, when types can’t be inferred,
+        ;;;     they can be specified using JSDoc the same way that
+        ;;;     type annotations are used in a .ts file"
+        ;;; - https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html
+        ;;;   - walks thru converting existing js project + typescript basics
+        ;;; - Install typescript "declaration files"; if you don't do this typescript will show
         ;;;   error "Cannot find module 'react'" etc.
         ;;;   - npm i @types/react --save-dev|--no-save # similarly @types/react-dom
         ;;;   - yarn add --no-lockfile @types/react ; yarn remove @types/react
