@@ -103,6 +103,7 @@
 (global-set-key (kbd "C-x C-n") 'other-frame)
 
 (global-set-key (kbd "M-r")   'helm-recentf)
+(global-set-key (kbd "M-r")   'helm-projectile-recentf)
 
 (provide 'bindings)
 ;;; bindings.el ends here
