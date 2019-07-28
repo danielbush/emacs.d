@@ -135,6 +135,7 @@
         ;;;     in .ts files. Likewise, when types can’t be inferred,
         ;;;     they can be specified using JSDoc the same way that
         ;;;     type annotations are used in a .ts file"
+        ;;;   - there is a list of supported docstring types
         ;;; - https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html
         ;;;   - walks thru converting existing js project + typescript basics
         ;;; - Install typescript "declaration files"; if you don't do this typescript will show
