@@ -102,7 +102,7 @@
 (global-set-key (kbd "C-c C-b") 'other-frame)
 (global-set-key (kbd "C-x C-n") 'other-frame)
 
-(global-set-key (kbd "M-r")   'helm-recentf)
+(global-set-key (kbd "M-C-r")   'helm-recentf)
 (global-set-key (kbd "M-r")   'helm-projectile-recentf)
 
 (provide 'bindings)
