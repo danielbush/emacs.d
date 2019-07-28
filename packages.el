@@ -136,6 +136,8 @@
         ;;;     they can be specified using JSDoc the same way that
         ;;;     type annotations are used in a .ts file"
         ;;;   - there is a list of supported docstring types
+        ;;;   - https://stackoverflow.com/questions/43768915/how-to-use-typescript-jsdoc-annotations-for-react-proptypes/43773447
+        ;;;     shows how to do prop types with jsdoc / @types/react
         ;;; - https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html
         ;;;   - walks thru converting existing js project + typescript basics
         ;;; - Install typescript "declaration files"; if you don't do this typescript will show
