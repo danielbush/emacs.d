@@ -129,7 +129,24 @@
         ;;;     - you probably want to NOT RUN javascript-typescript-langserver
         ;;;       as it will get confused by flow annotations and you see a lot
         ;;;       of flymake errors on them.
-        ;;; - Install typescript types; if you don't do this lsp ui will show
+        ;;; - Note on typescript in js
+        ;;;   - https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html
+        ;;;     "In a .js file, types can often be inferred just like
+        ;;;     in .ts files. Likewise, when types can’t be inferred,
+        ;;;     they can be specified using JSDoc the same way that
+        ;;;     type annotations are used in a .ts file"
+        ;;;   - there is a list of supported docstring types
+        ;;;   - https://stackoverflow.com/questions/43768915/how-to-use-typescript-jsdoc-annotations-for-react-proptypes/43773447
+        ;;;     shows how to do prop types with jsdoc / @types/react
+        ;;;   - https://basarat.gitbooks.io/typescript/docs/types/ambient/d.ts.html
+        ;;;     - also: https://medium.com/@mikenorth/guide-to-typescript-ambient-declarations-717ef6da6514
+        ;;;     - creating .d.ts files locally
+        ;;;     - the question: can docstring annotations refer to .d.ts files?
+        ;;;       So instead of doing @typedef in a docstring, I refer to the type in .d.ts.
+        ;;;       Then I can use typescript without using .ts files (initially).
+        ;;; - https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html
+        ;;;   - walks thru converting existing js project + typescript basics
+        ;;; - Install typescript "declaration files"; if you don't do this typescript will show
         ;;;   error "Cannot find module 'react'" etc.
         ;;;   - npm i @types/react --save-dev|--no-save # similarly @types/react-dom
         ;;;   - yarn add --no-lockfile @types/react ; yarn remove @types/react
