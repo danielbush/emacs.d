@@ -2,23 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'company) ;; to get company-mode-map
 (require 'extra/lsp)
 
-;;; Wait for company dropdwon to show, then hit C-: to trigger helm.
-(autoload 'helm-company "helm-company") ;; Not necessary if using ELPA package
-(eval-after-load 'company
-  '(progn
-     (define-key company-mode-map (kbd "C-:") 'helm-company)
-     (define-key company-active-map (kbd "C-:") 'helm-company)
-     ))
+(define-key company-mode-map (kbd "C-:") 'company-complete)
 
-(defun me/use-helm-lsp ()
-  "Wait for company dropdwon to show, then hit C-: to trigger helm.
-http://melpa.org/#/helm-company"
-  (interactive)
-  (define-key company-mode-map (kbd "C-:") 'helm-company)
-  (define-key company-active-map (kbd "C-:") 'helm-company)
-  )
+;;; --------------------------------------------------------------------------------
+;;; Shows how we could customise company for js:
 
 (defun me/company-lsp-setup ()
   "I just want lsp or a small set of things in the dropdown for js.
@@ -33,12 +23,32 @@ https://emacs.stackexchange.com/questions/20485/how-to-exclude-a-company-backend
     (setq company-backends '(company-lsp company-files))
     ))
 
-(add-hook 'js2-mode-hook
-          (lambda ()
-            (if me/use-lsp-for-js
-                ;; (progn (company-mode) (me/company-lsp-setup))
-                (progn (me/company-lsp-setup) (company-mode))
-              )))
+(ignore
+ (add-hook 'js2-mode-hook
+           (lambda ()
+             (if me/use-lsp-for-js
+                 ;; (progn (company-mode) (me/company-lsp-setup))
+                 (progn (me/company-lsp-setup) (company-mode))
+               )))
+ )
+
+;;; --------------------------------------------------------------------------------
+;;; helm-company
+
+;;; Aug-2019 DISABLING helm-company seems a bit buggy - it doesn't insert properly.
+
+;;; Wait for company dropdwon to show, then hit C-: to trigger helm.
+(ignore
+ (autoload 'helm-company "helm-company") ;; Not necessary if using ELPA package
+ )
+
+(ignore
+ (eval-after-load 'company
+   '(progn
+      (define-key company-mode-map (kbd "C-:") 'helm-company)
+      (define-key company-active-map (kbd "C-:") 'helm-company)
+      ))
+ )
 
 (provide 'extra/company)
 ;;; company.el ends here
