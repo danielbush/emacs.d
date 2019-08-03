@@ -7,6 +7,17 @@
 
 (define-key company-mode-map (kbd "C-:") 'company-complete)
 
+(defun me/disable-company-automatic-idle-completion ()
+  "Disable automatic completion because it can be expensive and laggy when on all the time.
+Christ only knows why I have to do it this way."
+  (interactive)
+  (setq company-minimum-prefix-length 1000000)
+  )
+(defun me/enable-company-automatic-idle-completion ()
+  (interactive)
+  (setq company-minimum-prefix-length 2)
+  )
+
 ;;; --------------------------------------------------------------------------------
 ;;; Shows how we could customise company for js:
 
