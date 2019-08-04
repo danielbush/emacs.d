@@ -29,7 +29,11 @@
 (global-set-key (kbd "C-x c b") 'helm-resume)
 (global-set-key (kbd "C-c v") 'helm-projectile-find-file)
 (global-set-key (kbd "C-c d") 'helm-projectile-find-dir)
-(global-set-key (kbd "C-c f") 'helm-projectile-ag)
+(progn
+;;; Aug-2019 helm-projectile-ag no longer respects -G
+  (global-set-key (kbd "C-c f") 'helm-projectile-ag)
+  (global-set-key (kbd "C-c f") 'helm-do-ag-project-root)
+  )
 (global-set-key (kbd "C-x p s s") 'helm-do-ag)
 (global-set-key (kbd "M-s i") 'helm-multi-swoop-projectile)
 (global-set-key (kbd "M-s i") 'helm-swoop)

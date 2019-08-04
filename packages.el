@@ -32,6 +32,7 @@
 
         helm
         helm-ag
+        ;; helm-rg
         helm-ls-git
         helm-swoop ;; oocur
         loccur
