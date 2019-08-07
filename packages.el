@@ -54,6 +54,9 @@
         swiper
         swiper-helm
 
+        vterm
+        vterm-toggle
+
         ;; ------------------------------------------------------------
         ;; Git
 
@@ -304,9 +307,18 @@
 
 (package-initialize)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/"))
+             '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives
-             '("org" . "http://orgmode.org/elpa/"))
+             '("org" . "https://orgmode.org/elpa/"))
+
+;;; 7-Aug-2019 - maybe this is better:
+(progn ;; ignore
+ (setq package-archives
+       '(
+         ("org" . "https://orgmode.org/elpa/")
+         ("melpa" . "https://melpa.org/packages/")
+         ;; ("gnu" . "https://elpa.gnu.org/packages/")
+         )))
 
 (defun me/package-install-my-packages ()
   "Install any packages in me/packages, if they are not installed already."
