@@ -45,6 +45,7 @@
   (require 'extra/hs)
   (require 'extra/company)
   (require 'extra/lsp)
+  (require 'extra/css-in-js)
   ;; (require 'extra/tern)
 
   (me/setup-frames)
