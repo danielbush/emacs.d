@@ -43,16 +43,6 @@ https://emacs.stackexchange.com/questions/20485/how-to-exclude-a-company-backend
                )))
  )
 
-;;; --------------------------------------------------------------------------------
-;;; helm-company
-
-;;; Aug-2019 DISABLING helm-company seems a bit buggy - it doesn't insert properly.
-
-;;; Wait for company dropdwon to show, then hit C-: to trigger helm.
-(ignore
- (autoload 'helm-company "helm-company") ;; Not necessary if using ELPA package
- )
-
 (ignore
  (eval-after-load 'company
    '(progn
