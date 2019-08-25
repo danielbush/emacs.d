@@ -126,7 +126,7 @@
         ;;;     ? npm i -g typescript-language-server; npm i -g typescript
         ;;;       - I think this is for actual typescript
         ;;;   - npm install -g vscode-css-languageserver-bin
-        ;;;   - flow
+        ;;;   - flow ( npm install -g flow)
         ;;;     - https://github.com/facebookarchive/flow-language-server (archived)
         ;;;     - "Language Server Protocol is now supported natively
         ;;;       in the core flow program by running: flow lsp"
