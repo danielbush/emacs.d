@@ -10,7 +10,9 @@
   :group 'me/js)
 
 ;; (add-hook 'prog-mode-hook #'lsp)
-(add-hook 'js2-mode-hook (lambda () (if me/use-lsp-for-js (lsp))))
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (if me/use-lsp-for-js (progn (lsp) (flymake-mode -1)))))
 
 (require 'company)
 (require 'company-lsp)

@@ -97,6 +97,17 @@
         company-flow
         helm-company
 
+        ;;; One strategy (for js) is
+        ;;; - use company-lsp and company-files as the ONLY 2 company backends
+        ;;;   M-x customize-option RET company-backends
+        ;;; - bind C-: to helm-company so it launches company in helm mode
+        ;;;   - I prefer that to see the dropdown at point
+        ;;; - bind C-; to company-dabbrev-code, which will open without helm,
+        ;;;   but you can then do "C-:" which will re-open company in helm.
+        ;;; - to ensure lsp is loaded in js2/rjsx-mode files, you'll
+        ;;;   need to enable it - M-x customize-option me/use-lsp-for-js
+        ;;; - ONE MORE THING: May need to re-run M-x lsp
+
         ;; company-tern ;; npm i -g tern
 
         ;;; lsp-mode

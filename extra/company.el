@@ -1,5 +1,6 @@
 ;;; extra/company.el -- stuff
 ;;; Commentary:
+;;;
 ;;; Code:
 
 (require 'company) ;; to get company-mode-map
@@ -34,22 +35,29 @@ https://emacs.stackexchange.com/questions/20485/how-to-exclude-a-company-backend
     (setq company-backends '(company-lsp company-files))
     ))
 
-(ignore
+;; (ignore
  (add-hook 'js2-mode-hook
            (lambda ()
              (if me/use-lsp-for-js
-                 ;; (progn (company-mode) (me/company-lsp-setup))
-                 (progn (me/company-lsp-setup) (company-mode))
+                 (progn
+                   (me/company-lsp-setup)
+                   (company-mode)
+                   )
                )))
- )
+ ;; )
 
-(ignore
+;; (ignore
  (eval-after-load 'company
    '(progn
+      ;; Assume company-lsp and company-files are set as backends:
       (define-key company-mode-map (kbd "C-:") 'helm-company)
       (define-key company-active-map (kbd "C-:") 'helm-company)
+      ;; Remember M-/ already does dabbrev, but here we allow autocomplete.
+      ;; Use C-: to trigger helm-company after C-; if you want.
+      (define-key company-mode-map (kbd "C-;") 'company-dabbrev-code)
+      (define-key company-active-map (kbd "C-;") 'company-dabbrev-code)
       ))
- )
+ ;; )
 
 (provide 'extra/company)
 ;;; company.el ends here
