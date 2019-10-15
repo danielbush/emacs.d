@@ -49,6 +49,7 @@
         ;; elscreen-persist
         golden-ratio
         beacon
+        multiple-cursors ;; faster version of occur + edit
 
         ;; Remove?
         swiper
