@@ -296,6 +296,9 @@
         ;; - elpy uses "jedi" as a backend (for autocomplete and xref).
         ;; - Backend, "C-c ." go to definition etc
         ;; - seems to work without company-jedi
+        ;; - To reset python:
+        ;;   - rm ~/.emacs.d/.python-environments
+        ;;   - rerun: (jedi:install-server)
 
         ;; ------------------------------------------------------------
         ;; Other languages
