@@ -8,8 +8,8 @@
 
 (defconst me/node/orig-exec-path exec-path)
 (defconst me/node/orig-PATH (getenv "PATH"))
-(defcustom me/node-versions '("8.9.0" "10.15.0") "List of node versions." :group 'me/node)
-(defcustom me/default-node-version "10.15.0" "Default version when we start Emacs." :group 'me/node :type "string")
+(defcustom me/node-versions '("12.13.0" "10.15.0" "8.9.0") "List of node versions." :group 'me/node)
+(defcustom me/default-node-version "12.13.0" "Default version when we start Emacs." :group 'me/node :type "string")
 ;; (defcustom me/node-versions '("8.1.3" "8.9.1") "List of node versions.")
 (defcustom me/nvm-home "/Users/daniel.bush/.nvm" "Path to .nvm.  ~/.nvm may not work." :group 'me/node)
 (defcustom me/yarn-redirect-toggle nil "Wether to always redirect generae me/yarn(/*) commands." :group 'me/node)
@@ -37,7 +37,8 @@
 
 ;; (defvar me/yarn-cmd "~/.nvm/versions/node/v7.8.0/bin/yarn")
 ;; (defvar me/yarn-cmd "/home/danb/.nvm/versions/node/v8.1.3/bin/yarn")
-(defvar me/yarn-cmd "yarn")
+;; (defvar me/yarn-cmd "yarn")
+(defvar me/yarn-cmd "/usr/local/bin/yarn")
 
 (defvar me/node-path "/usr/local/bin")
 
