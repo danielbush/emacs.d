@@ -255,6 +255,12 @@
         js2-mode
         rjsx-mode
 
+        ;; ------------------------------------------------------------
+        ;; typescript
+        ;;
+        ;; 25-Nov-19 http://redgreenrepeat.com/2018/05/04/typescript-in-emacs/
+        typescript-mode
+
         nvm
         pug-mode
         ;; flow-mode
