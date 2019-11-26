@@ -244,6 +244,12 @@
         ;; polymode - for css in js???
         polymode
 
+        ;; mmm mode instead? -- 27-Nov-2019
+        ;; - see https://emacs.stackexchange.com/questions/37918/how-to-highlight-graphql-template-literals-gql-in-jsx-files
+        ;;   for highlighting gql tags.
+        ;; - I can't get polymode to highlight css in css`` (emotion) although
+        ;;   I'm pretty sure it is using css mode.
+
         ;; ------------------------------------------------------------
         ;; js
         ;;
